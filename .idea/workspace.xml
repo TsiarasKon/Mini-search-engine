@@ -31,8 +31,8 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+            <state relative-caret-position="80">
+              <caret line="4" column="55" lean-forward="false" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -41,8 +41,8 @@
       <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+            <state relative-caret-position="1020">
+              <caret line="51" column="38" lean-forward="false" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -55,8 +55,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cmake-build-debug/my_doc0.txt" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
@@ -312,12 +312,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519813028583</updated>
-      <workItem from="1519813034628" duration="6336000" />
+      <workItem from="1519813034628" duration="9553000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6336000" />
+    <option name="totallyTimeSpent" value="9553000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="785" y="0" width="1142" height="1047" extended-state="0" />
@@ -364,14 +364,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/my_doc0.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -380,10 +372,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="55" lean-forward="false" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+        <state relative-caret-position="1020">
+          <caret line="51" column="38" lean-forward="false" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
