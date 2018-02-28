@@ -9,6 +9,7 @@ char *docfile;
 int K;
 
 int main(int argc, char *argv[]) {
+    /// different ways?
     if (argc < 5 || strcmp(argv[1], "-i") || strcmp(argv[3], "-k") || !isdigit(*argv[4])) {
         fprintf(stderr, "Invalid arguments: Please run \"$ ./minisearch -i docfile -k K\"\n");
         return 1;
@@ -27,6 +28,7 @@ int main(int argc, char *argv[]) {
         return 2;
     }
     char *buffer = malloc(bufSize);
+    char *bufferptr = buffer;       // used to free buffer in the end, since we're using strtok
     for (int i = 0; ; i++) {
         if (fgets(buffer, bufSize, fp) == NULL) {
             break;
@@ -37,7 +39,18 @@ int main(int argc, char *argv[]) {
         }
         printf("%d\n", strlen(buffer));
         doc_count++;
-        // save docs and create indices
+    }
+    rewind(fp);     // start again from the beginning of docfile
+    char **docs = malloc(doc_count * sizeof(char*));
+    for (int i = 0; i < doc_count; i++) {
+        if (fgets(buffer, bufSize, fp) == NULL) {
+            fprintf(stderr, "Something unexpected happened.\n");
+            return -1;
+        }
+        buffer = strchr(buffer, ' ') + 1;     // remove index number in front of doc
+        strtok(buffer, "\n");     // remove trailing newline character
+        docs[i] = malloc(strlen(buffer));
+        strcpy(docs[i], buffer);
     }
 
     char *command;
@@ -47,6 +60,7 @@ int main(int argc, char *argv[]) {
     cmds[2] = "/tf";
     cmds[3] = "/exit";
     while (1) {
+        printf("Type a command:\n");
         fgets(buffer, bufSize, stdin);
         strtok(buffer, "\n");     // remove trailing newline character
         command = strtok(buffer, " ");
@@ -55,7 +69,7 @@ int main(int argc, char *argv[]) {
         } else if (!strcmp(command, cmds[1])) {       // df
 
         } else if (!strcmp(command, cmds[2])) {       // tf
-
+            command = strtok(buffer, " ");
         } else if (!strcmp(command, cmds[3])) {       // exit
             break;
         } else {
@@ -63,8 +77,11 @@ int main(int argc, char *argv[]) {
             /// Implement /help
         }
     }
-
-    free(buffer);
+    for (int i = 0; i < doc_count; i++) {
+        free(docs[i]);
+    }
+    free(docs);
+    free(bufferptr);
     return 0;
 }
 
