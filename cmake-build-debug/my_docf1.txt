@@ -1,0 +1,2 @@
+0 Fail
+2 Unexpected index
