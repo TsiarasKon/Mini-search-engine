@@ -9,10 +9,10 @@
 D:/MyProjects/DI/syspro1/main.c
 stdio.h
 -
-ctype.h
--
 stdlib.h
 -
 string.h
+-
+ctype.h
 -
 

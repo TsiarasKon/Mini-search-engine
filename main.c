@@ -1,27 +1,38 @@
 #include <stdio.h>
-#include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define bufSize 1024    // assuming no line can be over 1024 characters long
 
-char *docfile;
-int K;
+char *docfile = NULL;
+int K = 10;     // default number of results
 
 int main(int argc, char *argv[]) {
-    /// different ways?
-    if (argc < 5 || strcmp(argv[1], "-i") || strcmp(argv[3], "-k") || !isdigit(*argv[4])) {
+    for (int i = 1; i < argc; i += 2) {
+        if (!strcmp(argv[i], "-i")) {
+            if (i == argc) {
+                docfile = NULL;
+            }
+            docfile = argv[i + 1];
+        } else if (!strcmp(argv[i], "-k")) {
+            if (i == argc) {
+                docfile = NULL;
+            }
+            K = atoi(argv[i + 1]);
+            if (K < 1) {
+                fprintf(stderr, "Invalid arguments: K must be greater than 0.\n");
+                return 1;
+            }
+        } else {
+            docfile = NULL;
+        }
+    }
+    if (docfile == NULL) {      // docfile was not given and/or unexpected arguments were encountered
         fprintf(stderr, "Invalid arguments: Please run \"$ ./minisearch -i docfile -k K\"\n");
         return 1;
     }
-    docfile = argv[2];
-    K = atoi(argv[4]);
-    if (K < 1) {
-        fprintf(stderr, "K must be greater than 0.\n");
-        return 1;
-    }
     int doc_count = 0;
-    printf("%s\n", docfile);
     FILE *fp = fopen(docfile, "r");
     if (fp == NULL) {
         fprintf(stderr, "Couldn't open %s.\n", docfile);
@@ -37,7 +48,6 @@ int main(int argc, char *argv[]) {
             fprintf(stderr, "Error in %s - Docs not in order.\n", docfile);
             return 3;
         }
-        printf("%d\n", strlen(buffer));
         doc_count++;
     }
     rewind(fp);     // start again from the beginning of docfile
