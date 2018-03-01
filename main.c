@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "trie.h"
 
 #define bufSize 1024    // assuming no line can be over 1024 characters long
 
@@ -13,11 +14,13 @@ int main(int argc, char *argv[]) {
         if (!strcmp(argv[i], "-i")) {
             if (i == argc) {
                 docfile = NULL;
+                break;
             }
             docfile = argv[i + 1];
         } else if (!strcmp(argv[i], "-k")) {
             if (i == argc) {
                 docfile = NULL;
+                break;
             }
             K = atoi(argv[i + 1]);
             if (K < 1) {
@@ -26,18 +29,21 @@ int main(int argc, char *argv[]) {
             }
         } else {
             docfile = NULL;
+            break;
         }
     }
     if (docfile == NULL) {      // docfile was not given and/or unexpected arguments were encountered
         fprintf(stderr, "Invalid arguments: Please run \"$ ./minisearch -i docfile -k K\"\n");
         return 1;
     }
+
     int doc_count = 0;
     FILE *fp = fopen(docfile, "r");
     if (fp == NULL) {
         fprintf(stderr, "Couldn't open %s.\n", docfile);
         return 2;
     }
+    printf("Loading docs from %s...\n", docfile);
     char *buffer = malloc(bufSize);
     char *bufferptr = buffer;       // used to free buffer in the end, since we're using strtok
     for (int i = 0; ; i++) {
@@ -62,6 +68,7 @@ int main(int argc, char *argv[]) {
         docs[i] = malloc(strlen(buffer));
         strcpy(docs[i], buffer);
     }
+    printf("Docs loaded successfully!\n");
 
     char *command;
     char *cmds[4];

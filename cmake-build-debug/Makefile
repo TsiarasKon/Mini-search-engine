@@ -149,6 +149,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/main.c.s
 .PHONY : main.c.s
 
+trie.obj: trie.c.obj
+
+.PHONY : trie.obj
+
+# target to build an object file
+trie.c.obj:
+	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/trie.c.obj
+.PHONY : trie.c.obj
+
+trie.i: trie.c.i
+
+.PHONY : trie.i
+
+# target to preprocess a source file
+trie.c.i:
+	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/trie.c.i
+.PHONY : trie.c.i
+
+trie.s: trie.c.s
+
+.PHONY : trie.s
+
+# target to generate assembly for a file
+trie.c.s:
+	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/trie.c.s
+.PHONY : trie.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -161,6 +188,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... trie.obj
+	@echo ... trie.i
+	@echo ... trie.s
 .PHONY : help
 
 
