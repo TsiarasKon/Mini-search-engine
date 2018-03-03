@@ -19,7 +19,7 @@ struct trie {
     TrieNode *first;
 };
 
-TrieNode* createTrieNode(char value);
+TrieNode* createTrieNode(char value, TrieNode *next);
 Trie* createTrie();
 
 void directInsert(TrieNode *current, char *word, int id, int i);

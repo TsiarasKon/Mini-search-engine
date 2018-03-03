@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include "trie.h"
 
-TrieNode* createTrieNode(char value) {
+TrieNode* createTrieNode(char value, TrieNode *next) {
     TrieNode* nptr = malloc(sizeof(TrieNode));
     nptr->value = value;
-    nptr->next = NULL;
+    nptr->next = next;
     nptr->child = NULL;
     nptr->postingList = createPostingList();
     return nptr;
@@ -22,11 +22,11 @@ Trie* createTrie() {
 
 void directInsert(TrieNode *current, char *word, int id, int i) {
     while (i < strlen(word) - 1) {
-        current->child = createTrieNode(word[i]);
+        current->child = createTrieNode(word[i], NULL);
         current = current->child;
         i++;
     }
-    current->child = createTrieNode(word[i]);       // final letter
+    current->child = createTrieNode(word[i], NULL);       // final letter
     incrementPostingList(current->child, id);
 }
 
@@ -36,7 +36,7 @@ void insert(Trie *root, char *word, int id) {
     }
     int wordlen = strlen(word);
     if (root->first == NULL) {      // only in first Trie insert
-        root->first = createTrieNode(word[0]);
+        root->first = createTrieNode(word[0], NULL);
         if (wordlen == 1) {     // just inserted the final letter
             incrementPostingList(root->first, id);
             return;
@@ -44,20 +44,25 @@ void insert(Trie *root, char *word, int id) {
         directInsert(root->first, word, id, 1);
         return;
     }
-    TrieNode *current = root->first;
+    TrieNode **current = &root->first;
     for (int i = 0; i < wordlen; i++) {
-        while (word[i] != current->value) {
-            if (current->next == NULL) {
-                current->next = createTrieNode(word[i]);
+        while (word[i] > (*current)->value) {
+            if ((*current)->next == NULL) {
+                (*current)->next = createTrieNode(word[i], NULL);
             }
-            current = current->next;
+            current = &(*current)->next;
         }
+        if ((*current) != NULL && word[i] < (*current)->value) {        // must be inserted before
+            TrieNode *newNode = createTrieNode(word[i], (*current));
+            *current = newNode;
+        }
+        // Go to next letter:
         if (i == wordlen - 1) {     // just inserted the final letter
-            incrementPostingList(current, id);
-        } else if (current->child != NULL) {     // proceed to child
-            current = current->child;
+            incrementPostingList((*current), id);
+        } else if ((*current)->child != NULL) {     // proceed to child
+            current = &(*current)->child;
         } else {    // child doesn't exist so we just add the entire word in the trie
-            directInsert(current, word, id, i + 1);
+            directInsert((*current), word, id, i + 1);
             return;
         }
     }

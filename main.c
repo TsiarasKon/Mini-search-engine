@@ -84,6 +84,7 @@ int main(int argc, char *argv[]) {
 
     interface(K);
 
+    /// free the trie
     for (int i = 0; i < doc_count; i++) {
         free(docs[i]);
     }
