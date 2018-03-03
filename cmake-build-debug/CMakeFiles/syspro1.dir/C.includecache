@@ -23,6 +23,8 @@ stdlib.h
 -
 string.h
 -
+stdio.h
+-
 trie.h
 D:/MyProjects/DI/syspro1/trie.h
 

@@ -1,28 +1,37 @@
 #ifndef TRIE_H
 #define TRIE_H
 
-typedef struct listnode{
+typedef struct listnode {
     int id_times[2];
     struct listnode *next;
-} Listnode;
+} ListNode;
 
-typedef struct node{
+typedef struct postinglist {
+    int df;
+    ListNode *first;
+} PostingList;
+
+typedef struct trienode {
     char value;
-    struct node *next;
-    struct node *child;
-    Listnode *postingList;
-} Node;
+    struct trienode *next;
+    struct trienode *child;
+    PostingList *postingList;
+} TrieNode;
 
 typedef struct {
-    Node *first;
+    TrieNode *first;
 } Trie;
 
+ListNode* createListNode(int id);
 Trie* createTrie();
-Node* createNode(char value);
-void incrementPostingList(Node *node, int id);
+TrieNode* createTrieNode(char value);
+PostingList* createPostingList();
+void incrementPostingList(TrieNode *node, int id);
 
-void directInsert(Node *current, char *word, int id, int i);
+void directInsert(TrieNode *current, char *word, int id, int i);
 void insert(Trie *root, char *word, int id);
 
+void printNode(TrieNode *node, char *prefix);
+void printTrie(Trie *root);
 
 #endif

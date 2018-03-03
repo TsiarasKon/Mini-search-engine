@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "trie.h"
 
 Trie* createTrie() {
@@ -8,40 +9,52 @@ Trie* createTrie() {
     return tptr;
 }
 
-Node* createNode(char value) {
-    Node* nptr = malloc(sizeof(Node));
+TrieNode* createTrieNode(char value) {
+    TrieNode* nptr = malloc(sizeof(TrieNode));
     nptr->value = value;
     nptr->next = NULL;
     nptr->child = NULL;
-    nptr->postingList = NULL;
+    nptr->postingList = createPostingList();
     return nptr;
 }
 
-void incrementPostingList(Node *node, int id) {
-    Listnode *current = node->postingList;
-    while (current != NULL) {
-        if (current->id_times[0] == id) {
-            current->id_times[1]++;
+void incrementPostingList(TrieNode *node, int id) {
+    ListNode **current = &(node->postingList->first);
+    while (*current != NULL) {
+        if ((*current)->id_times[0] == id) {
+            (*current)->id_times[1]++;
             return;
         }
-        current = current->next;
+        *current = (*current)->next;
     }
-    Listnode *newPostingList = malloc(sizeof(Listnode));
-    newPostingList->id_times[0] = id;
-    newPostingList->id_times[1]++;
-    newPostingList->next = NULL;
-    current = newPostingList;
+    *current = createListNode(id);
+    node->postingList->df++;
+}
+
+ListNode* createListNode(int id) {
+    ListNode *listNode = malloc(sizeof(ListNode));
+    listNode->id_times[0] = id;
+    listNode->id_times[1] = 1;
+    listNode->next = NULL;
+    return listNode;
+}
+
+PostingList* createPostingList() {
+    PostingList *postingList = malloc(sizeof(PostingList));
+    postingList->df = 0;
+    postingList->first = NULL;
+    return postingList;
 }
 
 /// free all
 
-void directInsert(Node *current, char *word, int id, int i) {
+void directInsert(TrieNode *current, char *word, int id, int i) {
     while (i < strlen(word) - 1) {
-        current->child = createNode(word[i]);
+        current->child = createTrieNode(word[i]);
         current = current->child;
         i++;
     }
-    current->child = createNode(word[i]);       // final letter
+    current->child = createTrieNode(word[i]);       // final letter
     incrementPostingList(current->child, id);
 }
 
@@ -50,23 +63,22 @@ void insert(Trie *root, char *word, int id) {
         return;
     }
     int wordlen = strlen(word);
-    Node *current = root->first;
-    if (current == NULL) {      // only in first Trie insert
-        current = createNode(word[0]);
+    if (root->first == NULL) {      // only in first Trie insert
+        root->first = createTrieNode(word[0]);
         if (wordlen == 1) {     // just inserted the final letter
-            incrementPostingList(current, id);
+            incrementPostingList(root->first, id);
             return;
         }
-        directInsert(current, word, id, 1);
+        directInsert(root->first, word, id, 1);
         return;
     }
+    TrieNode *current = root->first;
     for (int i = 0; i < wordlen; i++) {
         while (word[i] != current->value) {
-            current = current->next;
             if (current->next == NULL) {
-                current->next = createNode(word[i]);
-                current = current->next;
+                current->next = createTrieNode(word[i]);
             }
+            current = current->next;
         }
         if (i == wordlen - 1) {     // just inserted the final letter
             incrementPostingList(current, id);
@@ -76,5 +88,35 @@ void insert(Trie *root, char *word, int id) {
             directInsert(current, word, id, i);
             return;
         }
+    }
+}
+
+void printNode(TrieNode *node, char *prefix) {
+    TrieNode *currentChild = node->child;
+    size_t prefixLen = strlen(prefix);
+    char *word = malloc(prefixLen + 2);
+    strcpy(word, prefix);
+    word[prefixLen + 1] = '\0';
+    while (currentChild != NULL) {
+        word[prefixLen] = currentChild->value;
+        if (currentChild->postingList->first != NULL) {
+            printf("%s\n", word);
+        }
+        printNode(currentChild, word);
+        currentChild = currentChild->next;
+    }
+}
+
+void printTrie(Trie *root) {
+    TrieNode *current = root->first;
+    char first_letter[2];
+    first_letter[1] = '\0';
+    while (current != NULL) {
+        if (current->postingList->first != NULL) {
+            printf("%c\n", current->value);
+        }
+        first_letter[0] = current->value;
+        printNode(current, first_letter);
+        current = current->next;
     }
 }
