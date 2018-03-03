@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+D:/MyProjects/DI/syspro1/interface.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+
 D:/MyProjects/DI/syspro1/main.c
 stdio.h
 -

@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "D:/MyProjects/DI/syspro1/interface.c" "D:/MyProjects/DI/syspro1/cmake-build-debug/CMakeFiles/syspro1.dir/interface.c.obj"
   "D:/MyProjects/DI/syspro1/main.c" "D:/MyProjects/DI/syspro1/cmake-build-debug/CMakeFiles/syspro1.dir/main.c.obj"
   "D:/MyProjects/DI/syspro1/postinglist.c" "D:/MyProjects/DI/syspro1/cmake-build-debug/CMakeFiles/syspro1.dir/postinglist.c.obj"
   "D:/MyProjects/DI/syspro1/trie.c" "D:/MyProjects/DI/syspro1/cmake-build-debug/CMakeFiles/syspro1.dir/trie.c.obj"

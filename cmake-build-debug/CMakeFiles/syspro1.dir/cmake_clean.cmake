@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/syspro1.dir/main.c.obj"
   "CMakeFiles/syspro1.dir/trie.c.obj"
   "CMakeFiles/syspro1.dir/postinglist.c.obj"
+  "CMakeFiles/syspro1.dir/interface.c.obj"
   "syspro1.pdb"
   "syspro1.exe"
   "syspro1.exe.manifest"

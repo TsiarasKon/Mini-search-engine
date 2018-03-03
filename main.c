@@ -6,10 +6,11 @@
 
 #define bufSize 1024    // assuming no line can be over 1024 characters long
 
-char *docfile = NULL;
-int K = 10;     // default number of results
+void interface(int K);
 
 int main(int argc, char *argv[]) {
+    char *docfile = NULL;
+    int K = 10;     // default number of results
     for (int i = 1; i < argc; i += 2) {
         if (!strcmp(argv[i], "-i")) {
             if (i == argc) {
@@ -57,7 +58,10 @@ int main(int argc, char *argv[]) {
         doc_count++;
     }
     rewind(fp);     // start again from the beginning of docfile
+
+    Trie* trie = createTrie();
     char **docs = malloc(doc_count * sizeof(char*));
+    char *word;
     for (int i = 0; i < doc_count; i++) {
         if (fgets(buffer, bufSize, fp) == NULL) {
             fprintf(stderr, "Something unexpected happened.\n");
@@ -67,39 +71,23 @@ int main(int argc, char *argv[]) {
         strtok(buffer, "\n");     // remove trailing newline character
         docs[i] = malloc(strlen(buffer));
         strcpy(docs[i], buffer);
-    }
-    printf("Docs loaded successfully!\n");
-
-
-    char *command;
-    char *cmds[4];
-    cmds[0] = "/search";
-    cmds[1] = "/df";
-    cmds[2] = "/tf";
-    cmds[3] = "/exit";
-    while (1) {
-        printf("Type a command:\n");
-        fgets(buffer, bufSize, stdin);
-        strtok(buffer, "\n");     // remove trailing newline character
-        command = strtok(buffer, " ");
-        if (!strcmp(command, cmds[0])) {              // search
-
-        } else if (!strcmp(command, cmds[1])) {       // df
-
-        } else if (!strcmp(command, cmds[2])) {       // tf
-            command = strtok(buffer, " ");
-        } else if (!strcmp(command, cmds[3])) {       // exit
-            break;
-        } else {
-            printf("Unkown command '%s' - Type a valid command:\n", command);
-            /// Implement /help
+        word = strtok(buffer, " \t");
+        while (word != NULL) {
+            insert(trie, word, i);
+            word = strtok(NULL, " \t");
         }
     }
+    free(bufferptr);
+    printf("Docs loaded successfully!\n");
+
+    printTrie(trie);
+
+    interface(K);
+
     for (int i = 0; i < doc_count; i++) {
         free(docs[i]);
     }
     free(docs);
-    free(bufferptr);
     return 0;
 }
 

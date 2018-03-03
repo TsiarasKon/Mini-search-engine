@@ -122,6 +122,33 @@ syspro1/fast:
 	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/build
 .PHONY : syspro1/fast
 
+interface.obj: interface.c.obj
+
+.PHONY : interface.obj
+
+# target to build an object file
+interface.c.obj:
+	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/interface.c.obj
+.PHONY : interface.c.obj
+
+interface.i: interface.c.i
+
+.PHONY : interface.i
+
+# target to preprocess a source file
+interface.c.i:
+	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/interface.c.i
+.PHONY : interface.c.i
+
+interface.s: interface.c.s
+
+.PHONY : interface.s
+
+# target to generate assembly for a file
+interface.c.s:
+	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/interface.c.s
+.PHONY : interface.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -212,6 +239,9 @@ help:
 	@echo ... syspro1
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... interface.obj
+	@echo ... interface.i
+	@echo ... interface.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
