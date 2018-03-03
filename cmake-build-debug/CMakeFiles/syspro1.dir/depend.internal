@@ -3,7 +3,13 @@
 
 CMakeFiles/syspro1.dir/main.c.obj
  D:/MyProjects/DI/syspro1/main.c
+ D:/MyProjects/DI/syspro1/postinglist.h
+ D:/MyProjects/DI/syspro1/trie.h
+CMakeFiles/syspro1.dir/postinglist.c.obj
+ D:/MyProjects/DI/syspro1/postinglist.c
+ D:/MyProjects/DI/syspro1/postinglist.h
  D:/MyProjects/DI/syspro1/trie.h
 CMakeFiles/syspro1.dir/trie.c.obj
+ D:/MyProjects/DI/syspro1/postinglist.h
  D:/MyProjects/DI/syspro1/trie.c
  D:/MyProjects/DI/syspro1/trie.h

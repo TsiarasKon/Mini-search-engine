@@ -1,37 +1,31 @@
 #ifndef TRIE_H
 #define TRIE_H
 
-typedef struct listnode {
-    int id_times[2];
-    struct listnode *next;
-} ListNode;
+#include "postinglist.h"
 
-typedef struct postinglist {
-    int df;
-    ListNode *first;
-} PostingList;
+typedef struct postinglist PostingList;     // necessary forward declaration
 
-typedef struct trienode {
+typedef struct trienode TrieNode;
+typedef struct trie Trie;
+
+struct trienode {
     char value;
-    struct trienode *next;
-    struct trienode *child;
+    TrieNode *next;
+    TrieNode *child;
     PostingList *postingList;
-} TrieNode;
+};
 
-typedef struct {
+struct trie {
     TrieNode *first;
-} Trie;
+};
 
-ListNode* createListNode(int id);
-Trie* createTrie();
 TrieNode* createTrieNode(char value);
-PostingList* createPostingList();
-void incrementPostingList(TrieNode *node, int id);
+Trie* createTrie();
 
 void directInsert(TrieNode *current, char *word, int id, int i);
 void insert(Trie *root, char *word, int id);
 
-void printNode(TrieNode *node, char *prefix);
+void printTrieNode(TrieNode *node, char *prefix);
 void printTrie(Trie *root);
 
 #endif

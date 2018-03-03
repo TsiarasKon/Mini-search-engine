@@ -18,6 +18,18 @@ ctype.h
 trie.h
 D:/MyProjects/DI/syspro1/trie.h
 
+D:/MyProjects/DI/syspro1/postinglist.c
+stdlib.h
+-
+postinglist.h
+D:/MyProjects/DI/syspro1/postinglist.h
+trie.h
+D:/MyProjects/DI/syspro1/trie.h
+
+D:/MyProjects/DI/syspro1/postinglist.h
+trie.h
+D:/MyProjects/DI/syspro1/trie.h
+
 D:/MyProjects/DI/syspro1/trie.c
 stdlib.h
 -
@@ -29,4 +41,6 @@ trie.h
 D:/MyProjects/DI/syspro1/trie.h
 
 D:/MyProjects/DI/syspro1/trie.h
+postinglist.h
+D:/MyProjects/DI/syspro1/postinglist.h
 

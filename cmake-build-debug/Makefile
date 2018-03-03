@@ -149,6 +149,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/main.c.s
 .PHONY : main.c.s
 
+postinglist.obj: postinglist.c.obj
+
+.PHONY : postinglist.obj
+
+# target to build an object file
+postinglist.c.obj:
+	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/postinglist.c.obj
+.PHONY : postinglist.c.obj
+
+postinglist.i: postinglist.c.i
+
+.PHONY : postinglist.i
+
+# target to preprocess a source file
+postinglist.c.i:
+	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/postinglist.c.i
+.PHONY : postinglist.c.i
+
+postinglist.s: postinglist.c.s
+
+.PHONY : postinglist.s
+
+# target to generate assembly for a file
+postinglist.c.s:
+	$(MAKE) -f CMakeFiles\syspro1.dir\build.make CMakeFiles/syspro1.dir/postinglist.c.s
+.PHONY : postinglist.c.s
+
 trie.obj: trie.c.obj
 
 .PHONY : trie.obj
@@ -188,6 +215,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... postinglist.obj
+	@echo ... postinglist.i
+	@echo ... postinglist.s
 	@echo ... trie.obj
 	@echo ... trie.i
 	@echo ... trie.s

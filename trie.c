@@ -3,12 +3,6 @@
 #include <stdio.h>
 #include "trie.h"
 
-Trie* createTrie() {
-    Trie* tptr = malloc(sizeof(Trie));
-    tptr->first = NULL;
-    return tptr;
-}
-
 TrieNode* createTrieNode(char value) {
     TrieNode* nptr = malloc(sizeof(TrieNode));
     nptr->value = value;
@@ -18,32 +12,10 @@ TrieNode* createTrieNode(char value) {
     return nptr;
 }
 
-void incrementPostingList(TrieNode *node, int id) {
-    ListNode **current = &(node->postingList->first);
-    while (*current != NULL) {
-        if ((*current)->id_times[0] == id) {
-            (*current)->id_times[1]++;
-            return;
-        }
-        *current = (*current)->next;
-    }
-    *current = createListNode(id);
-    node->postingList->df++;
-}
-
-ListNode* createListNode(int id) {
-    ListNode *listNode = malloc(sizeof(ListNode));
-    listNode->id_times[0] = id;
-    listNode->id_times[1] = 1;
-    listNode->next = NULL;
-    return listNode;
-}
-
-PostingList* createPostingList() {
-    PostingList *postingList = malloc(sizeof(PostingList));
-    postingList->df = 0;
-    postingList->first = NULL;
-    return postingList;
+Trie* createTrie() {
+    Trie* tptr = malloc(sizeof(Trie));
+    tptr->first = NULL;
+    return tptr;
 }
 
 /// free all
@@ -85,13 +57,13 @@ void insert(Trie *root, char *word, int id) {
         } else if (current->child != NULL) {     // proceed to child
             current = current->child;
         } else {    // child doesn't exist so we just add the entire word in the trie
-            directInsert(current, word, id, i);
+            directInsert(current, word, id, i + 1);
             return;
         }
     }
 }
 
-void printNode(TrieNode *node, char *prefix) {
+void printTrieNode(TrieNode *node, char *prefix) {
     TrieNode *currentChild = node->child;
     size_t prefixLen = strlen(prefix);
     char *word = malloc(prefixLen + 2);
@@ -102,9 +74,10 @@ void printNode(TrieNode *node, char *prefix) {
         if (currentChild->postingList->first != NULL) {
             printf("%s\n", word);
         }
-        printNode(currentChild, word);
+        printTrieNode(currentChild, word);
         currentChild = currentChild->next;
     }
+    free(word);
 }
 
 void printTrie(Trie *root) {
@@ -116,7 +89,7 @@ void printTrie(Trie *root) {
             printf("%c\n", current->value);
         }
         first_letter[0] = current->value;
-        printNode(current, first_letter);
+        printTrieNode(current, first_letter);
         current = current->next;
     }
 }

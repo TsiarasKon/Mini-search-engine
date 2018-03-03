@@ -70,6 +70,7 @@ int main(int argc, char *argv[]) {
     }
     printf("Docs loaded successfully!\n");
 
+
     char *command;
     char *cmds[4];
     cmds[0] = "/search";

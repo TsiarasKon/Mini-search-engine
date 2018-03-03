@@ -85,6 +85,12 @@
 		<Unit filename="D:/MyProjects/DI/syspro1/main.c">
 			<Option target="syspro1"/>
 		</Unit>
+		<Unit filename="D:/MyProjects/DI/syspro1/postinglist.c">
+			<Option target="syspro1"/>
+		</Unit>
+		<Unit filename="D:/MyProjects/DI/syspro1/postinglist.h">
+			<Option target="syspro1"/>
+		</Unit>
 		<Unit filename="D:/MyProjects/DI/syspro1/trie.c">
 			<Option target="syspro1"/>
 		</Unit>
