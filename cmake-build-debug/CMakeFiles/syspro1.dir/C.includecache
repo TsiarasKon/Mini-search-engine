@@ -13,6 +13,8 @@ stdlib.h
 -
 string.h
 -
+ctype.h
+-
 trie.h
 /cygdrive/d/MyProjects/DI/syspro1/trie.h
 

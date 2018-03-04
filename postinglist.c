@@ -42,5 +42,5 @@ int getTermFrequency(PostingList *postingList, int id) {
         }
         current = current->next;
     }
-    return -1;
+    return 0;
 }

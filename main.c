@@ -72,8 +72,8 @@ int main(int argc, char *argv[]) {
         while (*buffer == ' ' || *buffer == '\t') {
             buffer++;
         }
-        strtok(buffer, "\r\n");     // remove trailing newline character
-        strtok(buffer, " \t");      // skip index number in front of doc
+        strtok(buffer, "\r\n");         // remove trailing newline character
+        strtok(buffer, " \t");          // skip index number in front of doc
         docs[id] = malloc(strlen(buffer));
         strcpy(docs[id], buffer);
         word = strtok(NULL, " \t");     // get first word
