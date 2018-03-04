@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include "trie.h"
 #include "util.h"
-
-#define bufSize 1024    // assuming no line can be over 1024 characters long
 
 void interface(Trie *trie, int K);
 
@@ -46,10 +43,11 @@ int main(int argc, char *argv[]) {
         return 2;
     }
     printf("Loading docs from %s...\n", docfile);
-    char *buffer = malloc(bufSize);
+    size_t bufsize = 64;      // sample size - getline will reallocate memory as needed
+    char *buffer = malloc(bufsize);
     char *bufferptr = buffer;       // used to free buffer in the end, since we're using strtok
     for (int i = 0; ; i++) {
-        if (fgets(buffer, bufSize, fp) == NULL) {
+        if (getline(&buffer, &bufsize, fp) == -1) {
             break;
         }
         if (atoi(buffer) != i) {
@@ -64,12 +62,12 @@ int main(int argc, char *argv[]) {
     char **docs = malloc(doc_count * sizeof(char*));
     char *word;
     for (int i = 0; i < doc_count; i++) {
-        if (fgets(buffer, bufSize, fp) == NULL) {
+        if (getline(&buffer, &bufsize, fp) == -1) {
             fprintf(stderr, "Something unexpected happened.\n");
             return -1;
         }
         buffer = strchr(buffer, ' ') + 1;     // remove index number in front of doc
-        strtok(buffer, "\n");     // remove trailing newline character
+        strtok(buffer, "\r\n");     // remove trailing newline character
         docs[i] = malloc(strlen(buffer));
         strcpy(docs[i], buffer);
         word = strtok(buffer, " \t");

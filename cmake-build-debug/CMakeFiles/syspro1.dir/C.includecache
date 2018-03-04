@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-D:/MyProjects/DI/syspro1/interface.c
+/cygdrive/d/MyProjects/DI/syspro1/interface.c
 stdio.h
 -
 stdlib.h
@@ -14,33 +14,31 @@ stdlib.h
 string.h
 -
 trie.h
-D:/MyProjects/DI/syspro1/trie.h
+/cygdrive/d/MyProjects/DI/syspro1/trie.h
 
-D:/MyProjects/DI/syspro1/main.c
+/cygdrive/d/MyProjects/DI/syspro1/main.c
 stdio.h
 -
 stdlib.h
 -
 string.h
 -
-ctype.h
--
 trie.h
-D:/MyProjects/DI/syspro1/trie.h
+/cygdrive/d/MyProjects/DI/syspro1/trie.h
+util.h
+/cygdrive/d/MyProjects/DI/syspro1/util.h
 
-D:/MyProjects/DI/syspro1/postinglist.c
+/cygdrive/d/MyProjects/DI/syspro1/postinglist.c
 stdlib.h
 -
 postinglist.h
-D:/MyProjects/DI/syspro1/postinglist.h
-trie.h
-D:/MyProjects/DI/syspro1/trie.h
+/cygdrive/d/MyProjects/DI/syspro1/postinglist.h
 
-D:/MyProjects/DI/syspro1/postinglist.h
+/cygdrive/d/MyProjects/DI/syspro1/postinglist.h
 trie.h
-D:/MyProjects/DI/syspro1/trie.h
+/cygdrive/d/MyProjects/DI/syspro1/trie.h
 
-D:/MyProjects/DI/syspro1/trie.c
+/cygdrive/d/MyProjects/DI/syspro1/trie.c
 stdlib.h
 -
 string.h
@@ -48,9 +46,13 @@ string.h
 stdio.h
 -
 trie.h
-D:/MyProjects/DI/syspro1/trie.h
+/cygdrive/d/MyProjects/DI/syspro1/trie.h
 
-D:/MyProjects/DI/syspro1/trie.h
+/cygdrive/d/MyProjects/DI/syspro1/trie.h
 postinglist.h
-D:/MyProjects/DI/syspro1/postinglist.h
+/cygdrive/d/MyProjects/DI/syspro1/postinglist.h
+
+/cygdrive/d/MyProjects/DI/syspro1/util.h
+trie.h
+/cygdrive/d/MyProjects/DI/syspro1/trie.h
 

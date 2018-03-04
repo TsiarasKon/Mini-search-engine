@@ -1,3 +1,1 @@
-"C:\Program Files (x86)\JetBrains\CLion 2016.2.3\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\syspro1.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\syspro1.dir/objects.a @CMakeFiles\syspro1.dir\objects1.rsp
-C:\MinGW\bin\gcc.exe  -g   -Wl,--whole-archive CMakeFiles\syspro1.dir/objects.a -Wl,--no-whole-archive  -o syspro1.exe -Wl,--out-implib,libsyspro1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\syspro1.dir\linklibs.rsp
+/usr/bin/cc  -g  -Wl,--enable-auto-import CMakeFiles/syspro1.dir/main.c.o CMakeFiles/syspro1.dir/trie.c.o CMakeFiles/syspro1.dir/postinglist.c.o CMakeFiles/syspro1.dir/interface.c.o  -o syspro1.exe -Wl,--out-implib,libsyspro1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

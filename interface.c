@@ -3,8 +3,6 @@
 #include <string.h>
 #include "trie.h"
 
-#define bufSize 1024    ///
-
 void interface(Trie *trie, int K) {
     char *command;
     char *cmds[4];
@@ -12,12 +10,13 @@ void interface(Trie *trie, int K) {
     cmds[1] = "/df";
     cmds[2] = "/tf";
     cmds[3] = "/exit";
-    char *buffer = malloc(bufSize);
+    size_t bufsize = 32;      // sample size - getline will reallocate memory as needed
+    char *buffer = malloc(bufsize);
     char *bufferptr = buffer;       // used to free buffer in the end, since we're using strtok
     while (1) {
         printf("Type a command:\n");
-        fgets(buffer, bufSize, stdin);
-        strtok(buffer, "\n");     // remove trailing newline character
+        getline(&buffer, &bufsize, stdin);
+        strtok(buffer, "\r\n");     // remove trailing newline character
         command = strtok(buffer, " ");
         if (!strcmp(command, cmds[0])) {              // search
 
