@@ -34,7 +34,7 @@ void insert(Trie *root, char *word, int id) {
     if (word[0] == '\0') {      // word is an empty string
         return;
     }
-    int wordlen = strlen(word);
+    size_t wordlen = strlen(word);
     if (root->first == NULL) {      // only in first Trie insert
         root->first = createTrieNode(word[0], NULL);
         if (wordlen == 1) {     // just inserted the final letter
@@ -69,7 +69,7 @@ void insert(Trie *root, char *word, int id) {
 }
 
 PostingList *getPostingList(Trie *root, char *word) {
-    int wordlen = strlen(word);
+    size_t wordlen = strlen(word);
     if (root->first == NULL) {       // empty Trie
         return NULL;
     }
@@ -86,7 +86,6 @@ PostingList *getPostingList(Trie *root, char *word) {
         }
         // Go to next letter:
         if (i == wordlen - 1) {     // word found
-            printf("%d\n", current->postingList->df);
             return current->postingList;
         } else if (current->child != NULL) {     // proceed to child
             current = current->child;

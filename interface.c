@@ -21,9 +21,21 @@ void interface(Trie *trie, int K) {
         if (!strcmp(command, cmds[0])) {              // search
 
         } else if (!strcmp(command, cmds[1])) {       // df
-
+            command = strtok(NULL, " \t");
+            if (command == NULL) {          // full df
+                printTrie(trie);
+            } else {        // single word df
+                PostingList *postingList = getPostingList(trie, command);
+                printf("%s %d\n", command, postingList->df);
+            }
         } else if (!strcmp(command, cmds[2])) {       // tf
-            command = strtok(buffer, " ");
+            command = strtok(NULL, " \t");
+            if (command == NULL) {          // full df
+                printTrie(trie);
+            } else {        // single word df
+                PostingList *postingList = getPostingList(trie, command);
+                printf("%s %d\n", command, postingList->df);
+            }
         } else if (!strcmp(command, cmds[3])) {       // exit
             break;
         } else {

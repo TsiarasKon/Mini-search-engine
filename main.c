@@ -50,6 +50,9 @@ int main(int argc, char *argv[]) {
         if (getline(&buffer, &bufsize, fp) == -1) {
             break;
         }
+        while (*buffer == ' ' || *buffer == '\t') {
+            buffer++;
+        }
         if (atoi(buffer) != i) {
             fprintf(stderr, "Error in %s - Docs not in order.\n", docfile);
             return 3;
@@ -61,18 +64,21 @@ int main(int argc, char *argv[]) {
     Trie* trie = createTrie();
     char **docs = malloc(doc_count * sizeof(char*));
     char *word;
-    for (int i = 0; i < doc_count; i++) {
+    for (int id = 0; id < doc_count; id++) {
         if (getline(&buffer, &bufsize, fp) == -1) {
             fprintf(stderr, "Something unexpected happened.\n");
             return -1;
         }
-        buffer = strchr(buffer, ' ') + 1;     // remove index number in front of doc
+        while (*buffer == ' ' || *buffer == '\t') {
+            buffer++;
+        }
         strtok(buffer, "\r\n");     // remove trailing newline character
-        docs[i] = malloc(strlen(buffer));
-        strcpy(docs[i], buffer);
-        word = strtok(buffer, " \t");
-        while (word != NULL) {
-            insert(trie, word, i);
+        strtok(buffer, " \t");      // skip index number in front of doc
+        docs[id] = malloc(strlen(buffer));
+        strcpy(docs[id], buffer);
+        word = strtok(NULL, " \t");     // get first word
+        while (word != NULL) {          // for every word in doc
+            insert(trie, word, id);
             word = strtok(NULL, " \t");
         }
     }
