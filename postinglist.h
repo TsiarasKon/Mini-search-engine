@@ -22,5 +22,6 @@ ListNode* createListNode(int id);
 PostingList* createPostingList();
 
 void incrementPostingList(TrieNode *node, int id);
+int getTermFrequency(PostingList *postingList, int id);
 
 #endif

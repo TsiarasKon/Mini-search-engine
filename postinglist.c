@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include "postinglist.h"
-#include "trie.h"
 
 ListNode* createListNode(int id) {
     ListNode *listNode = malloc(sizeof(ListNode));
@@ -30,4 +29,18 @@ void incrementPostingList(TrieNode *node, int id) {
     }
     *current = createListNode(id);
     node->postingList->df++;
+}
+
+int getTermFrequency(PostingList *postingList, int id) {
+    if (postingList == NULL) {
+        return -1;
+    }
+    ListNode *current = postingList->first;
+    while (current != NULL) {
+        if (current->id_times[0] == id) {
+            return current->id_times[1];
+        }
+        current = current->next;
+    }
+    return -1;
 }

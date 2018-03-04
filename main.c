@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "trie.h"
+#include "util.h"
 
 #define bufSize 1024    // assuming no line can be over 1024 characters long
 
