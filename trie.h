@@ -25,6 +25,8 @@ Trie* createTrie();
 void directInsert(TrieNode *current, char *word, int id, int i);
 void insert(Trie *root, char *word, int id);
 
+PostingList *getPostingList(Trie *root, char *word);
+
 void printTrieNode(TrieNode *node, char *prefix);
 void printTrie(Trie *root);
 

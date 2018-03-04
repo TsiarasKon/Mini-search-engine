@@ -68,6 +68,35 @@ void insert(Trie *root, char *word, int id) {
     }
 }
 
+PostingList *getPostingList(Trie *root, char *word) {
+    int wordlen = strlen(word);
+    if (root->first == NULL) {       // empty Trie
+        return NULL;
+    }
+    TrieNode *current = root->first;
+    for (int i = 0; i < wordlen; i++) {
+        while (word[i] > current->value) {
+            if (current->next == NULL) {
+                return NULL;
+            }
+            current = current->next;
+        }
+        if (word[i] < current->value) {        // must be inserted before
+            return NULL;
+        }
+        // Go to next letter:
+        if (i == wordlen - 1) {     // word found
+            printf("%d\n", current->postingList->df);
+            return current->postingList;
+        } else if (current->child != NULL) {     // proceed to child
+            current = current->child;
+        } else {            // child doesn't exist
+            return NULL;
+        }
+    }
+    return NULL;
+}
+
 void printTrieNode(TrieNode *node, char *prefix) {
     TrieNode *currentChild = node->child;
     size_t prefixLen = strlen(prefix);
@@ -77,7 +106,7 @@ void printTrieNode(TrieNode *node, char *prefix) {
     while (currentChild != NULL) {
         word[prefixLen] = currentChild->value;
         if (currentChild->postingList->first != NULL) {
-            printf("%s\n", word);
+            printf("%s %d\n", word, currentChild->postingList->df);
         }
         printTrieNode(currentChild, word);
         currentChild = currentChild->next;
@@ -91,7 +120,7 @@ void printTrie(Trie *root) {
     first_letter[1] = '\0';
     while (current != NULL) {
         if (current->postingList->first != NULL) {
-            printf("%c\n", current->value);
+            printf("%c %d\n", current->value, current->postingList->df);
         }
         first_letter[0] = current->value;
         printTrieNode(current, first_letter);

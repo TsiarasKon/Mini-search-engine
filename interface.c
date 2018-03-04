@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "trie.h"
 
 #define bufSize 1024    ///
 
-void interface(int K) {
+void interface(Trie *trie, int K) {
     char *command;
     char *cmds[4];
     cmds[0] = "/search";
@@ -27,7 +28,7 @@ void interface(int K) {
         } else if (!strcmp(command, cmds[3])) {       // exit
             break;
         } else {
-            printf("Unkown command '%s' - Type a valid command:\n", command);
+            printf("Unknown command '%s' - Type a valid command:\n", command);
             /// Implement /help
         }
     }

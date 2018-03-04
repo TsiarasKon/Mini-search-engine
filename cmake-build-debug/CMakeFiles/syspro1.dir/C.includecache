@@ -13,6 +13,8 @@ stdlib.h
 -
 string.h
 -
+trie.h
+D:/MyProjects/DI/syspro1/trie.h
 
 D:/MyProjects/DI/syspro1/main.c
 stdio.h

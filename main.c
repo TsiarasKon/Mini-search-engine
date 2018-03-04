@@ -6,7 +6,7 @@
 
 #define bufSize 1024    // assuming no line can be over 1024 characters long
 
-void interface(int K);
+void interface(Trie *trie, int K);
 
 int main(int argc, char *argv[]) {
     char *docfile = NULL;
@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
 
     printTrie(trie);
 
-    interface(K);
+    interface(trie, K);
 
     /// free the trie
     for (int i = 0; i < doc_count; i++) {
