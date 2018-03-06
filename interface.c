@@ -20,7 +20,30 @@ void interface(Trie *trie, int K) {
         strtok(buffer, "\r\n");     // remove trailing newline character
         command = strtok(buffer, " ");
         if (!strcmp(command, cmds[0])) {              // search
+            command = strtok(NULL, " \t");
+            if (command == NULL) {
+                printf("Invalid use of '/search' - At least one query term is required.\n");
+                continue;
+            }
+            char *terms[10];
+            terms[0] = malloc(strlen(command));
+            strcpy(terms[0], command);
+            for (int i = 1; i < 10; i++) {
+                terms[i] = NULL;
+            }
+            int term_count = 1;
+            command = strtok(NULL, " \t");
+            while (command != NULL && term_count < 10) {
+                terms[term_count] = malloc(strlen(command));
+                strcpy(terms[term_count], command);
+                term_count++;
+                command = strtok(NULL, " \t");
+            }
 
+            /// implement PQ
+            /// calculate score
+
+            /// pretty print
         } else if (!strcmp(command, cmds[1])) {       // df
             command = strtok(NULL, " \t");
             if (command == NULL) {          // full df
@@ -36,13 +59,13 @@ void interface(Trie *trie, int K) {
         } else if (!strcmp(command, cmds[2])) {       // tf
             command = strtok(NULL, " \t");
             if (command == NULL || !isdigit(*command)) {
-                printf("Invalid use of '/tf'.\n");
+                printf("Invalid use of '/tf' - No doc specified.\n");
                 continue;
             }
             int id = atoi(command);
             command = strtok(NULL, " \t");
             if (command == NULL) {
-                printf("Invalid use of '/tf'.\n");
+                printf("Invalid use of '/tf' - No word specified.\n");
                 continue;
             }
             PostingList *postingList = getPostingList(trie, command);

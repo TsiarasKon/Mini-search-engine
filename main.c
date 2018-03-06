@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
         return 2;
     }
     printf("Loading docs from %s...\n", docfile);
-    size_t bufsize = 64;      // sample size - getline will reallocate memory as needed
+    size_t bufsize = 128;      // sample size - getline will reallocate memory as needed
     char *buffer = malloc(bufsize);
     char *bufferptr = buffer;       // used to free buffer in the end, since we're using strtok
     for (int i = 0; ; i++) {
@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
 
     interface(trie, K);
 
-    /// free the trie
+    deleteTrie(trie);
     for (int i = 0; i < doc_count; i++) {
         free(docs[i]);
     }

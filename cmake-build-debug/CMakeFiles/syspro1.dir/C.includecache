@@ -31,6 +31,8 @@ util.h
 /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.h
 
 /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.c
+stdio.h
+-
 stdlib.h
 -
 postinglist.h
