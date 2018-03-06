@@ -1,1 +1,1 @@
-/usr/bin/cc  -g  -Wl,--enable-auto-import CMakeFiles/syspro1.dir/main.c.o CMakeFiles/syspro1.dir/trie.c.o CMakeFiles/syspro1.dir/postinglist.c.o CMakeFiles/syspro1.dir/interface.c.o  -o syspro1.exe -Wl,--out-implib,libsyspro1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
+/usr/bin/cc -g   CMakeFiles/syspro1.dir/main.c.o CMakeFiles/syspro1.dir/trie.c.o CMakeFiles/syspro1.dir/postinglist.c.o CMakeFiles/syspro1.dir/interface.c.o CMakeFiles/syspro1.dir/util.c.o  -o syspro1 

@@ -28,7 +28,7 @@ void interface(Trie *trie, int K) {
             } else {        // single word df
                 PostingList *postingList = getPostingList(trie, command);
                 if (postingList == NULL) {
-                    printf("%s doesn't exist in any of the docs.\n", command);
+                    printf("\"%s\" doesn't exist in any of the docs.\n", command);
                     continue;
                 }
                 printf("%s %d\n", command, postingList->df);
@@ -46,10 +46,7 @@ void interface(Trie *trie, int K) {
                 continue;
             }
             PostingList *postingList = getPostingList(trie, command);
-            if (postingList == NULL) {
-                printf("%s doesn't exist in any of the docs.\n", command);
-                continue;
-            }
+            // If the word doesn't exist in the asked doc, its termFrequency will be 0
             printf("%d %s %d\n", id, command, getTermFrequency(postingList, id));
         } else if (!strcmp(command, cmds[3])) {       // exit
             break;

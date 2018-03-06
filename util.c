@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <math.h>
 #include "util.h"
 
@@ -5,15 +6,15 @@
 #define b 0.75
 
 double IDF(Trie *root, char *word, int N) {
-    PostingList *postingList = getPostingList(trie, word);
+    PostingList *postingList = getPostingList(root, word);
     if (postingList == NULL) {
         return -1;
     }
-    return log10((N - postingList->df + 0.5) / (postingList->df + 0.5));
+    return 5;//log10((N - postingList->df + 0.5) / (postingList->df + 0.5));
 }
 
 double score(Trie *root, char *word, int id, int D, double avgdl, int N) {
-    int tf = getTermFrequency(getPostingList(trie, word), id);
+    int tf = getTermFrequency(getPostingList(root, word), id);
     if (tf < 0) {
         return -1;
     }

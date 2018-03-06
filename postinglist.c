@@ -33,7 +33,7 @@ void incrementPostingList(TrieNode *node, int id) {
 
 int getTermFrequency(PostingList *postingList, int id) {
     if (postingList == NULL) {
-        return -1;
+        return 0;
     }
     ListNode *current = postingList->first;
     while (current != NULL) {

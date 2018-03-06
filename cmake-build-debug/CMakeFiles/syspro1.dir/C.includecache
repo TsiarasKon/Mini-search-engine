@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/d/MyProjects/DI/syspro1/interface.c
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/interface.c
 stdio.h
 -
 stdlib.h
@@ -16,9 +16,9 @@ string.h
 ctype.h
 -
 trie.h
-/cygdrive/d/MyProjects/DI/syspro1/trie.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
 
-/cygdrive/d/MyProjects/DI/syspro1/main.c
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/main.c
 stdio.h
 -
 stdlib.h
@@ -26,21 +26,21 @@ stdlib.h
 string.h
 -
 trie.h
-/cygdrive/d/MyProjects/DI/syspro1/trie.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
 util.h
-/cygdrive/d/MyProjects/DI/syspro1/util.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.h
 
-/cygdrive/d/MyProjects/DI/syspro1/postinglist.c
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.c
 stdlib.h
 -
 postinglist.h
-/cygdrive/d/MyProjects/DI/syspro1/postinglist.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.h
 
-/cygdrive/d/MyProjects/DI/syspro1/postinglist.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.h
 trie.h
-/cygdrive/d/MyProjects/DI/syspro1/trie.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
 
-/cygdrive/d/MyProjects/DI/syspro1/trie.c
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.c
 stdlib.h
 -
 string.h
@@ -48,13 +48,21 @@ string.h
 stdio.h
 -
 trie.h
-/cygdrive/d/MyProjects/DI/syspro1/trie.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
 
-/cygdrive/d/MyProjects/DI/syspro1/trie.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
 postinglist.h
-/cygdrive/d/MyProjects/DI/syspro1/postinglist.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.h
 
-/cygdrive/d/MyProjects/DI/syspro1/util.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.c
+stdio.h
+-
+math.h
+-
+util.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.h
+
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.h
 trie.h
-/cygdrive/d/MyProjects/DI/syspro1/trie.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
 

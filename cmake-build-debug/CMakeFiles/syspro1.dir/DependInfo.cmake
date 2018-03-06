@@ -4,10 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/cygdrive/d/MyProjects/DI/syspro1/interface.c" "/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/CMakeFiles/syspro1.dir/interface.c.o"
-  "/cygdrive/d/MyProjects/DI/syspro1/main.c" "/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/CMakeFiles/syspro1.dir/main.c.o"
-  "/cygdrive/d/MyProjects/DI/syspro1/postinglist.c" "/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/CMakeFiles/syspro1.dir/postinglist.c.o"
-  "/cygdrive/d/MyProjects/DI/syspro1/trie.c" "/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/CMakeFiles/syspro1.dir/trie.c.o"
+  "/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/interface.c" "/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/CMakeFiles/syspro1.dir/interface.c.o"
+  "/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/main.c" "/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/CMakeFiles/syspro1.dir/main.c.o"
+  "/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.c" "/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/CMakeFiles/syspro1.dir/postinglist.c.o"
+  "/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.c" "/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/CMakeFiles/syspro1.dir/trie.c.o"
+  "/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.c" "/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/CMakeFiles/syspro1.dir/util.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

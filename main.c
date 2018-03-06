@@ -85,8 +85,6 @@ int main(int argc, char *argv[]) {
     free(bufferptr);
     printf("Docs loaded successfully!\n");
 
-    printTrie(trie);
-
     interface(trie, K);
 
     /// free the trie

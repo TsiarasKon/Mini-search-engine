@@ -8,97 +8,107 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug"/>
+				<Option working_dir="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug"/>
+				<Option working_dir="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="syspro1">
-				<Option output="/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/syspro1.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug"/>
+				<Option output="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/syspro1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/../../../../lib/../include/w32api"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/x86_64-pc-cygwin"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 syspro1"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 syspro1"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="syspro1/fast">
-				<Option output="/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/syspro1.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug"/>
+				<Option output="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/syspro1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/../../../../lib/../include/w32api"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/x86_64-pc-cygwin"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 syspro1/fast"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/d/MyProjects/DI/syspro1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 syspro1/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/cygdrive/d/MyProjects/DI/syspro1/interface.c">
+		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/interface.c">
 			<Option target="syspro1"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/MyProjects/DI/syspro1/main.c">
+		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/main.c">
 			<Option target="syspro1"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/MyProjects/DI/syspro1/postinglist.c">
+		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.c">
 			<Option target="syspro1"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/MyProjects/DI/syspro1/postinglist.h">
+		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.h">
 			<Option target="syspro1"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/MyProjects/DI/syspro1/trie.c">
+		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.c">
 			<Option target="syspro1"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/MyProjects/DI/syspro1/trie.h">
+		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h">
 			<Option target="syspro1"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/MyProjects/DI/syspro1/CMakeLists.txt">
+		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.c">
+			<Option target="syspro1"/>
+		</Unit>
+		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.h">
+			<Option target="syspro1"/>
+		</Unit>
+		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
