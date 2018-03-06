@@ -12,13 +12,37 @@ TrieNode* createTrieNode(char value, TrieNode *next) {
     return nptr;
 }
 
+void deleteTrieNode(TrieNode *trieNode) {
+    if (trieNode == NULL) {
+        fprintf(stderr, "Attempted to delete a NULL TrieNode.\n");
+        return;
+    }
+    deletePostingList(trieNode->postingList);
+    if (trieNode->child != NULL) {
+        deleteTrieNode(trieNode->child);
+    }
+    if (trieNode->next != NULL) {
+        deleteTrieNode(trieNode->next);
+    }
+    free(trieNode);
+}
+
 Trie* createTrie() {
     Trie* tptr = malloc(sizeof(Trie));
     tptr->first = NULL;
     return tptr;
 }
 
-/// free all
+void deleteTrie(Trie *trie) {
+    if (trie == NULL) {
+        fprintf(stderr, "Attempted to delete a NULL Trie.\n");
+        return;
+    }
+    if (trie->first != NULL) {
+        deleteTrieNode(trie->first);
+    }
+    free(trie);
+}
 
 void directInsert(TrieNode *current, char *word, int id, int i) {
     while (i < strlen(word) - 1) {

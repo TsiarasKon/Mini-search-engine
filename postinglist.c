@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "postinglist.h"
 
@@ -9,6 +10,17 @@ ListNode* createListNode(int id) {
     return listNode;
 }
 
+void deleteListNode(ListNode *listNode) {
+    if (listNode == NULL) {
+        fprintf(stderr, "Attempted to delete a NULL ListNode.\n");
+        return;
+    }
+    if (listNode->next != NULL) {
+        deleteListNode(listNode->next);
+    }
+    free(listNode);
+}
+
 PostingList* createPostingList() {
     PostingList *postingList = malloc(sizeof(PostingList));
     postingList->df = 0;
@@ -16,7 +28,16 @@ PostingList* createPostingList() {
     return postingList;
 }
 
-/// free all
+void deletePostingList(PostingList *postingList) {
+    if (postingList == NULL) {
+        fprintf(stderr, "Attempted to delete a NULL PostingList.\n");
+        return;
+    }
+    if (postingList->first != NULL) {
+        deleteListNode(postingList->first);
+    }
+    free(postingList);
+}
 
 void incrementPostingList(TrieNode *node, int id) {
     ListNode **current = &(node->postingList->first);
