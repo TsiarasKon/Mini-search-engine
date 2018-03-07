@@ -3,8 +3,10 @@
 #include <string.h>
 #include <ctype.h>
 #include "trie.h"
+#include "pairingheap.h"
+#include "util.h"
 
-void interface(Trie *trie, int K) {
+void interface(Trie *trie, int K, char **docs, int doc_count) {
     char *command;
     char *cmds[4];
     cmds[0] = "/search";
@@ -40,10 +42,15 @@ void interface(Trie *trie, int K) {
                 command = strtok(NULL, " \t");
             }
 
-            /// implement PQ
+            HeapNode *heap = NULL;
             /// calculate score
 
-            /// pretty print
+//            heap = heapInsert(heap, 0.12345678, 7);
+//            heap = heapInsert(heap, 0.52345, 589);
+//            heap = heapInsert(heap, 3.246, 3564);
+//            heap = heapInsert(heap, 0.96486888888, 9766);
+//            heap = heapInsert(heap, 0.04326943, 234);
+            print_results(heap, K, docs, doc_count);
         } else if (!strcmp(command, cmds[1])) {       // df
             command = strtok(NULL, " \t");
             if (command == NULL) {          // full df

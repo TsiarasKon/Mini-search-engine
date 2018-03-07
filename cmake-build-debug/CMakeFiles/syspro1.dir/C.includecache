@@ -17,6 +17,10 @@ ctype.h
 -
 trie.h
 /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
+pairingheap.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/pairingheap.h
+util.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.h
 
 /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/main.c
 stdio.h
@@ -24,6 +28,8 @@ stdio.h
 stdlib.h
 -
 string.h
+-
+ctype.h
 -
 trie.h
 /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
@@ -79,4 +85,6 @@ util.h
 /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.h
 trie.h
 /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
+pairingheap.h
+/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/pairingheap.h
 

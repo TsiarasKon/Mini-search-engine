@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "trie.h"
 #include "util.h"
 #include "pairingheap.h"
 
-void interface(Trie *trie, int K);
+void interface(Trie *trie, int K, char **docs, int doc_count);
 
 int main(int argc, char *argv[]) {
     char *docfile = NULL;
@@ -40,10 +41,10 @@ int main(int argc, char *argv[]) {
     int doc_count = 0;
     FILE *fp = fopen(docfile, "r");
     if (fp == NULL) {
-        fprintf(stderr, "Couldn't open %s.\n", docfile);
+        fprintf(stderr, "Couldn't open '%s'.\n", docfile);
         return 2;
     }
-    printf("Loading docs from %s...\n", docfile);
+    printf("Loading docs from '%s'...\n", docfile);
     size_t bufsize = 128;      // sample size - getline will reallocate memory as needed
     char *buffer = malloc(bufsize);
     char *bufferptr = buffer;       // used to free buffer in the end, since we're using strtok
@@ -55,7 +56,7 @@ int main(int argc, char *argv[]) {
             buffer++;
         }
         if (atoi(buffer) != i) {
-            fprintf(stderr, "Error in %s - Docs not in order.\n", docfile);
+            fprintf(stderr, "Error in '%s' - Docs not in order.\n", docfile);
             return 3;
         }
         doc_count++;
@@ -86,25 +87,7 @@ int main(int argc, char *argv[]) {
     free(bufferptr);
     printf("Docs loaded successfully!\n");
 
-//    HeapNode *heap = createHeapNode(0.7, 3);
-//    printf("Curr max: %f\n", heap->score);
-//    heap = heapInsert(heap, 0.3, 4);
-//    printf("Curr max: %f\n", heap->score);
-//    heap = heapInsert(heap, 0.86, 4);
-//    printf("Curr max: %f\n", heap->score);
-//    heap = deleteMaxNode(heap);
-//    printf("Curr max: %f\n", heap->score);
-//    heap = deleteMaxNode(heap);
-//    printf("Curr max: %f\n", heap->score);
-//    heap = heapInsert(heap, 0.81, 4);
-//    printf("Curr max: %f\n", heap->score);
-//    heap = deleteMaxNode(heap);
-//    printf("Curr max: %f\n", heap->score);
-//    heap = deleteMaxNode(heap);
-
-
-
-    interface(trie, K);
+    interface(trie, K, docs, doc_count);
 
     deleteTrie(trie);
     for (int i = 0; i < doc_count; i++) {

@@ -6,3 +6,5 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -ansi -g3")
 
 set(SOURCE_FILES main.c trie.c postinglist.c interface.c util.c pairingheap.c pairingheap.h)
 add_executable(syspro1 ${SOURCE_FILES})
+
+target_link_libraries(syspro1 m)

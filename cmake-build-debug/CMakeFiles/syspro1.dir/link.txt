@@ -1,1 +1,1 @@
-/usr/bin/cc -g   CMakeFiles/syspro1.dir/main.c.o CMakeFiles/syspro1.dir/trie.c.o CMakeFiles/syspro1.dir/postinglist.c.o CMakeFiles/syspro1.dir/interface.c.o CMakeFiles/syspro1.dir/util.c.o CMakeFiles/syspro1.dir/pairingheap.c.o  -o syspro1 
+/usr/bin/cc -g   CMakeFiles/syspro1.dir/main.c.o CMakeFiles/syspro1.dir/trie.c.o CMakeFiles/syspro1.dir/postinglist.c.o CMakeFiles/syspro1.dir/interface.c.o CMakeFiles/syspro1.dir/util.c.o CMakeFiles/syspro1.dir/pairingheap.c.o  -o syspro1 -lm 
