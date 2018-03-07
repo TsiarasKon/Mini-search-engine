@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/syspro1.dir/postinglist.c.o"
   "CMakeFiles/syspro1.dir/interface.c.o"
   "CMakeFiles/syspro1.dir/util.c.o"
+  "CMakeFiles/syspro1.dir/pairingheap.c.o"
   "syspro1.pdb"
   "syspro1"
 )

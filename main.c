@@ -3,6 +3,7 @@
 #include <string.h>
 #include "trie.h"
 #include "util.h"
+#include "pairingheap.h"
 
 void interface(Trie *trie, int K);
 
@@ -84,6 +85,24 @@ int main(int argc, char *argv[]) {
     }
     free(bufferptr);
     printf("Docs loaded successfully!\n");
+
+//    HeapNode *heap = createHeapNode(0.7, 3);
+//    printf("Curr max: %f\n", heap->score);
+//    heap = heapInsert(heap, 0.3, 4);
+//    printf("Curr max: %f\n", heap->score);
+//    heap = heapInsert(heap, 0.86, 4);
+//    printf("Curr max: %f\n", heap->score);
+//    heap = deleteMaxNode(heap);
+//    printf("Curr max: %f\n", heap->score);
+//    heap = deleteMaxNode(heap);
+//    printf("Curr max: %f\n", heap->score);
+//    heap = heapInsert(heap, 0.81, 4);
+//    printf("Curr max: %f\n", heap->score);
+//    heap = deleteMaxNode(heap);
+//    printf("Curr max: %f\n", heap->score);
+//    heap = deleteMaxNode(heap);
+
+
 
     interface(trie, K);
 

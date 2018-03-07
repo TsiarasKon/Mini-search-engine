@@ -7,9 +7,13 @@ CMakeFiles/syspro1.dir/interface.c.o
  /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
 CMakeFiles/syspro1.dir/main.c.o
  /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/main.c
+ /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/pairingheap.h
  /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.h
  /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
  /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.h
+CMakeFiles/syspro1.dir/pairingheap.c.o
+ /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/pairingheap.c
+ /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/pairingheap.h
 CMakeFiles/syspro1.dir/postinglist.c.o
  /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.c
  /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.h

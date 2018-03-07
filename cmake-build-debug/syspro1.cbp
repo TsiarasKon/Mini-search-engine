@@ -90,6 +90,12 @@
 		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/main.c">
 			<Option target="syspro1"/>
 		</Unit>
+		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/pairingheap.c">
+			<Option target="syspro1"/>
+		</Unit>
+		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/pairingheap.h">
+			<Option target="syspro1"/>
+		</Unit>
 		<Unit filename="/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/postinglist.c">
 			<Option target="syspro1"/>
 		</Unit>
