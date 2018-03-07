@@ -12,16 +12,16 @@ HeapNode* createHeapNode(double score, int id) {
     return heapNode;
 }
 
-void deleteHeapNode(HeapNode *heapNode) {
+void destroyHeap(HeapNode *heapNode) {
     if (heapNode == NULL) {
-        fprintf(stderr, "Attempted to delete a NULL HeapNode.\n");
+        fprintf(stderr, "Attempted to destroy a NULL HeapNode.\n");
         return;
     }
     if (heapNode->children != NULL) {
-        deleteHeapNode(heapNode->children);
+        destroyHeap(heapNode->children);
     }
     if (heapNode->sibilings != NULL) {
-        deleteHeapNode(heapNode->sibilings);
+        destroyHeap(heapNode->sibilings);
     }
     free(heapNode);
 }

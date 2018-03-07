@@ -12,7 +12,7 @@ struct heapNode {
 };
 
 HeapNode* createHeapNode(double score, int id);
-void deleteHeapNode(HeapNode *heapNode);
+void destroyHeap(HeapNode *heapNode);
 void addHeapChild(HeapNode *heap, HeapNode *heapNode);
 //HeapNode* heapify(HeapNode *heap);
 

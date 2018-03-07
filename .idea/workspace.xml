@@ -12,7 +12,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="326bd191-4010-47e4-ac12-f0357ca2903d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util.c" afterPath="$PROJECT_DIR$/util.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/syspro1.dir/interface.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/syspro1.dir/interface.c.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/syspro1.dir/main.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/syspro1.dir/main.c.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/syspro1.dir/pairingheap.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/syspro1.dir/pairingheap.c.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/syspro1.dir/util.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/syspro1.dir/util.c.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/syspro1" afterPath="$PROJECT_DIR$/cmake-build-debug/syspro1" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/syspro1.exe" afterPath="$PROJECT_DIR$/cmake-build-debug/syspro1.exe" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface.c" afterPath="$PROJECT_DIR$/interface.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pairingheap.c" afterPath="$PROJECT_DIR$/pairingheap.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pairingheap.h" afterPath="$PROJECT_DIR$/pairingheap.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,14 +39,14 @@
     <favorites_list name="syspro1" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6943931">
+    <splitter split-orientation="horizontal" split-proportion="0.54898334">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="496">
-                  <caret line="84" column="9" lean-forward="true" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
+                <state relative-caret-position="1482">
+                  <caret line="78" column="33" lean-forward="false" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -47,17 +57,17 @@
           <file leaf-file-name="trie.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/trie.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="475">
+                <state relative-caret-position="361">
                   <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="util.c" pinned="false" current-in-tab="true">
+          <file leaf-file-name="util.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/util.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="344">
+                <state relative-caret-position="437">
                   <caret line="23" column="71" lean-forward="false" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
@@ -76,14 +86,24 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="interface.c" pinned="false" current-in-tab="false">
+          <file leaf-file-name="interface.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/interface.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="438">
-                  <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="2" selection-end-line="51" selection-end-column="55" />
+                <state relative-caret-position="192">
+                  <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="2" selection-end-line="49" selection-end-column="55" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pairingheap.c" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pairingheap.c">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="456">
+                  <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -92,7 +112,7 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="util.h" pinned="false" current-in-tab="true">
+          <file leaf-file-name="util.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/util.h">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="171">
@@ -109,6 +129,16 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="456">
                   <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pairingheap.h" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pairingheap.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="304">
+                  <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
@@ -142,12 +172,13 @@
         <option value="$PROJECT_DIR$/trie.h" />
         <option value="$PROJECT_DIR$/priorityqueue.c" />
         <option value="$PROJECT_DIR$/priorityqueue.h" />
-        <option value="$PROJECT_DIR$/pairingheap.h" />
         <option value="$PROJECT_DIR$/util.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/interface.c" />
         <option value="$PROJECT_DIR$/util.c" />
+        <option value="$PROJECT_DIR$/pairingheap.h" />
         <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/pairingheap.c" />
+        <option value="$PROJECT_DIR$/interface.c" />
       </list>
     </option>
   </component>
@@ -214,7 +245,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Build All">
-    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS=" -i Entertainment.txt -k 3" PASS_PARENT_ENVS_2="true" PROJECT_NAME="syspro1" TARGET_NAME="syspro1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="syspro1" RUN_TARGET_NAME="syspro1">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS=" -i dataset.txt -k 3" PASS_PARENT_ENVS_2="true" PROJECT_NAME="syspro1" TARGET_NAME="syspro1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="syspro1" RUN_TARGET_NAME="syspro1">
       <envs />
     </configuration>
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="syspro1" TARGET_NAME="syspro1" CONFIG_NAME="Debug">
@@ -415,12 +446,12 @@
       <workItem from="1520198209751" duration="3348000" />
       <workItem from="1520367942114" duration="6086000" />
       <workItem from="1520377231341" duration="368000" />
-      <workItem from="1520410156052" duration="12572000" />
+      <workItem from="1520410156052" duration="17890000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82564000" />
+    <option name="totallyTimeSpent" value="87882000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -493,21 +524,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="24" />
+      <option name="time" value="25" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/interface.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="22" lean-forward="false" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -814,24 +835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pairingheap.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pairingheap.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="60" column="60" lean-forward="false" selection-start-line="60" selection-start-column="60" selection-end-line="60" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/postinglist.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -846,14 +849,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="23" column="49" lean-forward="false" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trie.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -876,10 +871,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface.c">
+    <entry file="file://$PROJECT_DIR$/util.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="2" selection-end-line="51" selection-end-column="55" />
+        <state relative-caret-position="437">
+          <caret line="23" column="71" lean-forward="false" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -888,26 +883,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/trie.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
+        <state relative-caret-position="361">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trie.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="84" column="9" lean-forward="true" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
+        <state relative-caret-position="1482">
+          <caret line="78" column="33" lean-forward="false" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/util.c">
+    <entry file="file://$PROJECT_DIR$/pairingheap.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="23" column="71" lean-forward="false" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
+        <state relative-caret-position="304">
+          <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pairingheap.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="2" selection-end-line="49" selection-end-column="55" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

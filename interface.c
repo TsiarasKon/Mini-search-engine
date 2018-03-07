@@ -28,16 +28,14 @@ void interface(Trie *trie, int K, char **docs, int doc_count) {
                 continue;
             }
             char *terms[10];
-            terms[0] = malloc(strlen(command));
-            strcpy(terms[0], command);
+            terms[0] = command;
             for (int i = 1; i < 10; i++) {
                 terms[i] = NULL;
             }
             int term_count = 1;
             command = strtok(NULL, " \t");
             while (command != NULL && term_count < 10) {
-                terms[term_count] = malloc(strlen(command));
-                strcpy(terms[term_count], command);
+                terms[term_count] = command;
                 term_count++;
                 command = strtok(NULL, " \t");
             }
@@ -51,6 +49,7 @@ void interface(Trie *trie, int K, char **docs, int doc_count) {
 //            heap = heapInsert(heap, 0.96486888888, 9766);
 //            heap = heapInsert(heap, 0.04326943, 234);
             print_results(heap, K, docs, doc_count);
+            destroyHeap(heap);
         } else if (!strcmp(command, cmds[1])) {       // df
             command = strtok(NULL, " \t");
             if (command == NULL) {          // full df
