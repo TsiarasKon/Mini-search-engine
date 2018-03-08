@@ -16,6 +16,7 @@ struct listnode {
 struct postinglist {
     int df;
     ListNode *first;
+    ListNode *last;
 };
 
 ListNode* createListNode(int id);

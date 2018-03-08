@@ -28,7 +28,7 @@ void deleteListNode(ListNode **listNode) {
 PostingList* createPostingList() {
     PostingList *postingList = malloc(sizeof(PostingList));
     postingList->df = 0;
-    postingList->first = NULL;
+    postingList->first = postingList->last = NULL;
     return postingList;
 }
 
@@ -45,16 +45,19 @@ void deletePostingList(PostingList **postingList) {
 }
 
 void incrementPostingList(TrieNode *node, int id) {
-    ListNode **current = &node->postingList->first;
-    while (*current != NULL) {
-        if ((*current)->id_times[0] == id) {
-            (*current)->id_times[1]++;
-            return;
-        }
-        current = &(*current)->next;
+    PostingList **PostingList = &node->postingList;
+    if ((*PostingList)->first == NULL) {
+        (*PostingList)->first = createListNode(id);
+        (*PostingList)->last = (*PostingList)->first;
+        return;
     }
-    *current = createListNode(id);
-    node->postingList->df++;
+    if ((*PostingList)->last->id_times[0] == id) {   // word belongs to the same (last) doc
+        (*PostingList)->last->id_times[1]++;
+    } else {
+        (*PostingList)->last->next = createListNode(id);
+        (*PostingList)->last = (*PostingList)->last->next;
+        (*PostingList)->df++;
+    }
 }
 
 int getTermFrequency(PostingList *postingList, int id) {
@@ -62,12 +65,11 @@ int getTermFrequency(PostingList *postingList, int id) {
         return 0;
     }
     ListNode *current = postingList->first;
-    while (current != NULL) {
+    while (current != NULL) {       ///
         if (current->id_times[0] == id) {
             return current->id_times[1];
         }
         current = current->next;
     }
-    current = NULL;
     return 0;
 }
