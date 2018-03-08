@@ -5,23 +5,19 @@
 #define k1 1.2
 #define b 0.75
 
-double IDF(Trie *root, char *word, int N) {
-    PostingList *postingList = getPostingList(root, word);
-    if (postingList == NULL) {
-        return -1;
-    }
-    return log10((N - postingList->df + 0.5) / (postingList->df + 0.5));
+extern int K;
+extern int doc_count;
+extern double avgdl;
+
+double IDF(int df) {
+    return log10((doc_count - df + 0.5) / (df + 0.5));
 }
 
-double score(Trie *root, char *word, int id, int D, double avgdl, int N) {
-    int tf = getTermFrequency(getPostingList(root, word), id);
-    if (tf < 0) {
-        return -1;
-    }
-    return IDF(root, word, N) * ((tf * (k1 + 1)) / (tf + k1 * (1 - b + b * (D / avgdl))));
+double score(int tf, int df, int D) {
+    return IDF(df) * ((tf * (k1 + 1)) / (tf + k1 * (1 - b + b * (D / avgdl))));
 }
 
-void print_results(HeapNode *heap, int K, char **docs, int doc_count) {
+void print_results(HeapNode *heap, char **docs) {
     int margins[3];
     margins[0] = ((int) log10(K)) + 1;
     margins[1] = ((int) log10(doc_count)) + 1;

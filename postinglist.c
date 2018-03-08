@@ -66,7 +66,7 @@ int getTermFrequency(PostingList *postingList, int id) {
         return 0;
     }
     ListNode *current = postingList->first;
-    while (current != NULL) {       ///
+    while (current != NULL && current->id_times[0] <= id) {
         if (current->id_times[0] == id) {
             return current->id_times[1];
         }

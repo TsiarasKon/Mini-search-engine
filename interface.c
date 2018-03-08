@@ -1,3 +1,4 @@
+#define _GNU_SOURCE         // for getline()
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,7 +7,10 @@
 #include "pairingheap.h"
 #include "util.h"
 
-void interface(Trie *trie, int K, char **docs, int doc_count) {
+extern int K;
+extern int doc_count;
+
+void interface(Trie *trie, char **docs, int *docWc) {
     char *command;
     char *cmds[4];
     cmds[0] = "/search";
@@ -41,14 +45,34 @@ void interface(Trie *trie, int K, char **docs, int doc_count) {
             }
 
             HeapNode *heap = NULL;
-            /// calculate score
-
-            heap = heapInsert(heap, 0.12345678, 7);
-            heap = heapInsert(heap, 0.52345, 59);
-//            heap = heapInsert(heap, 3.246, 34);
-//            heap = heapInsert(heap, 0.96486888888, 96);
-            heap = heapInsert(heap, 0.04326943, 23);
-            print_results(heap, K, docs, doc_count);
+            ListNode *postingListPtr[term_count];
+            PostingList *tempPostingList;
+            for (int i = 0; i < term_count; i++) {
+                tempPostingList = getPostingList(trie, terms[i]);
+                postingListPtr[i] = (tempPostingList == NULL) ? NULL : tempPostingList->first;
+            }
+            double doc_score;
+            int tf;
+            for (int id = 0; id < doc_count; id++) {
+                doc_score = 0;
+                for (int i = 0; i < term_count; i++) {
+                    while (postingListPtr[i] != NULL && postingListPtr[i]->id_times[0] < id) {
+                        postingListPtr[i] = postingListPtr[i]->next;
+                    }
+                    if (postingListPtr[i] == NULL || postingListPtr[i]->id_times[0] > id) {
+                        continue;
+                    }
+                    // Else doc_id exists in this posting list:
+                    tempPostingList = getPostingList(trie, terms[i]);
+                    tf = getTermFrequency(tempPostingList, id);
+                    if (tf <= 0) {   // getPostingList() returned NULL <=> word doesn't exist in trie
+                        continue;   // score would be 0 anyway
+                    }
+                    doc_score += score(tf, tempPostingList->df, docWc[id]);
+                }
+                heap = heapInsert(heap, doc_score, id);
+            }
+            print_results(heap, docs);
             destroyHeap(&heap);
         } else if (!strcmp(command, cmds[1])) {       // df
             command = strtok(NULL, " \t");

@@ -4,9 +4,9 @@
 #include "trie.h"
 #include "pairingheap.h"
 
-double IDF(Trie *root, char *word, int N);
-double score(Trie *root, char *word, int id, int D, double avgdl, int N);
+double IDF(int df);
+double score(int tf, int df, int D);
 
-void print_results(HeapNode *heap, int K, char **docs, int doc_count);
+void print_results(HeapNode *heap, char **docs);
 
 #endif

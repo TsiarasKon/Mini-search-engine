@@ -1,3 +1,4 @@
+#define _GNU_SOURCE         // for getline()
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,11 +7,14 @@
 #include "util.h"
 #include "pairingheap.h"
 
-void interface(Trie *trie, int K, char **docs, int doc_count);
+int K = 10;     // default number of results
+int doc_count = 0;
+double avgdl = 0.0;
+
+void interface(Trie *trie, char **docs, int *docWc);
 
 int main(int argc, char *argv[]) {
     char *docfile = NULL;
-    int K = 10;     // default number of results
     for (int i = 1; i < argc; i += 2) {
         if (!strcmp(argv[i], "-i")) {
             if (i == argc) {
@@ -38,7 +42,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int doc_count = 0;
     FILE *fp = fopen(docfile, "r");
     if (fp == NULL) {
         fprintf(stderr, "Couldn't open '%s'.\n", docfile);
@@ -65,9 +68,11 @@ int main(int argc, char *argv[]) {
     rewind(fp);     // start again from the beginning of docfile
 
     Trie* trie = createTrie();
-    char **docs = malloc(doc_count * sizeof(char*));
+    char *docs[doc_count];
     char *word;
+    int docWc[doc_count];
     for (int id = 0; id < doc_count; id++) {
+        docWc[id] = 0;
         if (getline(&buffer, &bufsize, fp) == -1) {
             fprintf(stderr, "Something unexpected happened.\n");
             return -1;
@@ -83,6 +88,8 @@ int main(int argc, char *argv[]) {
         word = strtok(NULL, " \t");     // get first word
         while (word != NULL) {          // for every word in doc
             insert(trie, word, id);
+            docWc[id]++;
+            avgdl++;
             word = strtok(NULL, " \t");
         }
         buffer = bufferptr;     // resetting buffer that maybe was moved
@@ -93,18 +100,12 @@ int main(int argc, char *argv[]) {
     fclose(fp);
     printf("Docs loaded successfully!\n");
 
-//    PostingList *pl = getPostingList(trie, "The");
-//    printf("1:[%d, %d], 2:[%d, %d]\n", pl->first->id_times[0], \
-//pl->first->id_times[1], pl->first->next->id_times[0], \
-//pl->first->next->id_times[1]);
-    interface(trie, K, docs, doc_count);
+    interface(trie, docs, docWc);
 
     deleteTrie(&trie);
-    //trie = NULL;
     for (int i = 0; i < doc_count; i++) {
         free(docs[i]);
     }
-    free(docs);
     return 0;
 }
 
