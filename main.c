@@ -46,12 +46,12 @@ int main(int argc, char *argv[]) {
     }
     printf("Loading docs from '%s'...\n", docfile);
     size_t bufsize = 128;      // sample size - getline will reallocate memory as needed
-    char *buffer = malloc(bufsize);
-    char *bufferptr = buffer;       // used to free buffer in the end, since we're using strtok
+    char *buffer = NULL, *bufferptr = NULL;
     for (int i = 0; ; i++) {
         if (getline(&buffer, &bufsize, fp) == -1) {
             break;
         }
+        bufferptr = buffer;
         while (*buffer == ' ' || *buffer == '\t') {
             buffer++;
         }
@@ -60,6 +60,7 @@ int main(int argc, char *argv[]) {
             return 3;
         }
         doc_count++;
+        buffer = bufferptr;     // resetting buffer that maybe was moved
     }
     rewind(fp);     // start again from the beginning of docfile
 
@@ -71,6 +72,7 @@ int main(int argc, char *argv[]) {
             fprintf(stderr, "Something unexpected happened.\n");
             return -1;
         }
+        bufferptr = buffer;
         while (*buffer == ' ' || *buffer == '\t') {
             buffer++;
         }
@@ -83,13 +85,21 @@ int main(int argc, char *argv[]) {
             insert(trie, word, id);
             word = strtok(NULL, " \t");
         }
+        buffer = bufferptr;     // resetting buffer that maybe was moved
     }
-    free(bufferptr);
+    if (bufferptr != NULL) {
+        free(bufferptr);
+    }
     printf("Docs loaded successfully!\n");
 
+    PostingList *pl = getPostingList(trie, "The");
+    printf("1:[%d, %d], 2:[%d, %d]\n", pl->first->id_times[0], \
+pl->first->id_times[1], pl->first->next->id_times[0], \
+pl->first->next->id_times[1]);
     interface(trie, K, docs, doc_count);
 
-    deleteTrie(trie);
+    deleteTrie(&trie);
+    //trie = NULL;
     for (int i = 0; i < doc_count; i++) {
         free(docs[i]);
     }

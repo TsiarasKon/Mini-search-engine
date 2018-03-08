@@ -12,9 +12,9 @@ struct heapNode {
 };
 
 HeapNode* createHeapNode(double score, int id);
-void destroyHeap(HeapNode *heapNode);
+void destroyHeap(HeapNode **heap);
 void addHeapChild(HeapNode *heap, HeapNode *heapNode);
-//HeapNode* heapify(HeapNode *heap);
+HeapNode* heapify(HeapNode *heap);
 
 HeapNode* heapMerge(HeapNode *heap1, HeapNode *heap2);
 HeapNode* mergePairs(HeapNode *children);

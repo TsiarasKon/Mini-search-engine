@@ -12,18 +12,21 @@ HeapNode* createHeapNode(double score, int id) {
     return heapNode;
 }
 
-void destroyHeap(HeapNode *heapNode) {
-    if (heapNode == NULL) {
-        fprintf(stderr, "Attempted to destroy a NULL HeapNode.\n");
-        return;
+void destroyHeap(HeapNode **heap) {
+//    if (heapNode == NULL) {
+//        fprintf(stderr, "Attempted to destroy a NULL HeapNode.\n");
+//        return;
+//    }
+//    if (heapNode->children != NULL) {
+//        destroyHeap(heapNode->children);
+//    }
+//    if (heapNode->sibilings != NULL) {
+//        destroyHeap(heapNode->sibilings);
+//    }
+//    free(heapNode);
+    while (*heap != NULL) {
+        *heap = deleteMaxNode(*heap);
     }
-    if (heapNode->children != NULL) {
-        destroyHeap(heapNode->children);
-    }
-    if (heapNode->sibilings != NULL) {
-        destroyHeap(heapNode->sibilings);
-    }
-    free(heapNode);
 }
 
 void addHeapChild(HeapNode *heap, HeapNode *heapNode) {
@@ -32,13 +35,13 @@ void addHeapChild(HeapNode *heap, HeapNode *heapNode) {
     heapNode->sibilings = nextChild;
 }
 
-//HeapNode* heapify(HeapNode *heap) {
-//    if (heap->sibilings != NULL) {
-//        //addHeapChild(heap, heap->sibilings);
-//        heap->sibilings = NULL;
-//    }
-//    return heap;
-//}
+HeapNode* heapify(HeapNode *heap) {
+    if (heap != NULL && heap->sibilings != NULL) {
+        //addHeapChild(heap, heap->sibilings);
+        heap->sibilings = NULL;
+    }
+    return heap;
+}
 
 HeapNode* heapMerge(HeapNode *heap1, HeapNode *heap2) {
     if (heap2 == NULL) {
@@ -58,7 +61,15 @@ HeapNode* mergePairs(HeapNode *children) {
     if (children == NULL || children->sibilings == NULL) {
         return children;
     }
-    return heapMerge(heapMerge(children, children->sibilings), mergePairs(children->sibilings->sibilings));
+    HeapNode *A, *B, *newNode;
+    A = children;
+    B = children->sibilings;
+    newNode = children->sibilings->sibilings;
+
+    A->sibilings = NULL;
+    B->sibilings = NULL;
+
+    return heapMerge(heapMerge(A, B), mergePairs(newNode));
 }
 
 HeapNode* heapInsert(HeapNode *heap, double score, int id) {
@@ -66,11 +77,12 @@ HeapNode* heapInsert(HeapNode *heap, double score, int id) {
 }
 
 HeapNode* deleteMaxNode(HeapNode *heap) {
-    if (heap == NULL) {
-        fprintf(stderr, "Attempted to delete a NULL HeapNode.\n");
-        return NULL;
-    }
-    HeapNode *res = heap->children;
-    free(heap);
-    return mergePairs(res);
+//    if (heap == NULL) {
+//        fprintf(stderr, "Attempted to delete a NULL HeapNode.\n");
+//        return NULL;
+//    }
+//    HeapNode *res = heap->children;
+//    //printf("%d %d\n", sizeof(res), sizeof(*res));
+//    free(heap);
+    return mergePairs(heap->children);
 }

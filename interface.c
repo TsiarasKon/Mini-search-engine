@@ -21,7 +21,7 @@ void interface(Trie *trie, int K, char **docs, int doc_count) {
         getline(&buffer, &bufsize, stdin);
         strtok(buffer, "\r\n");     // remove trailing newline character
         command = strtok(buffer, " ");
-        if (!strcmp(command, cmds[0])) {              // search
+        if (!strcmp(command, cmds[0]) || !strcmp(command, "/s")) {              // search
             command = strtok(NULL, " \t");
             if (command == NULL) {
                 printf("Invalid use of '/search' - At least one query term is required.\n");
@@ -43,13 +43,13 @@ void interface(Trie *trie, int K, char **docs, int doc_count) {
             HeapNode *heap = NULL;
             /// calculate score
 
-//            heap = heapInsert(heap, 0.12345678, 7);
-//            heap = heapInsert(heap, 0.52345, 589);
-//            heap = heapInsert(heap, 3.246, 3564);
-//            heap = heapInsert(heap, 0.96486888888, 9766);
-//            heap = heapInsert(heap, 0.04326943, 234);
+            heap = heapInsert(heap, 0.12345678, 7);
+            heap = heapInsert(heap, 0.52345, 59);
+//            heap = heapInsert(heap, 3.246, 34);
+//            heap = heapInsert(heap, 0.96486888888, 96);
+            heap = heapInsert(heap, 0.04326943, 23);
             print_results(heap, K, docs, doc_count);
-            destroyHeap(heap);
+            destroyHeap(&heap);
         } else if (!strcmp(command, cmds[1])) {       // df
             command = strtok(NULL, " \t");
             if (command == NULL) {          // full df

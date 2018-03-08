@@ -19,9 +19,9 @@ struct postinglist {
 };
 
 ListNode* createListNode(int id);
-void deleteListNode(ListNode *listNode);
+void deleteListNode(ListNode **listNode);
 PostingList* createPostingList();
-void deletePostingList(PostingList *postingList);
+void deletePostingList(PostingList **postingList);
 
 void incrementPostingList(TrieNode *node, int id);
 int getTermFrequency(PostingList *postingList, int id);

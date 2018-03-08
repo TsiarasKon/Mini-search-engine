@@ -20,9 +20,9 @@ struct trie {
 };
 
 TrieNode* createTrieNode(char value, TrieNode *next);
-void deleteTrieNode(TrieNode *trieNode);
+void deleteTrieNode(TrieNode **trieNode);
 Trie* createTrie();
-void deleteTrie(Trie *trie);
+void deleteTrie(Trie **trie);
 
 void directInsert(TrieNode *current, char *word, int id, int i);
 void insert(Trie *root, char *word, int id);

@@ -10,15 +10,19 @@ ListNode* createListNode(int id) {
     return listNode;
 }
 
-void deleteListNode(ListNode *listNode) {
-    if (listNode == NULL) {
+void deleteListNode(ListNode **listNode) {
+    if (*listNode == NULL) {
         fprintf(stderr, "Attempted to delete a NULL ListNode.\n");
         return;
     }
-    if (listNode->next != NULL) {
-        deleteListNode(listNode->next);
+    ListNode *current = *listNode;
+    ListNode *next;
+    while (current != NULL) {
+        next = current->next;
+        free(current);
+        current = next;
     }
-    free(listNode);
+    *listNode = NULL;
 }
 
 PostingList* createPostingList() {
@@ -28,25 +32,26 @@ PostingList* createPostingList() {
     return postingList;
 }
 
-void deletePostingList(PostingList *postingList) {
-    if (postingList == NULL) {
+void deletePostingList(PostingList **postingList) {
+    if (*postingList == NULL) {
         fprintf(stderr, "Attempted to delete a NULL PostingList.\n");
         return;
     }
-    if (postingList->first != NULL) {
-        deleteListNode(postingList->first);
+    if ((*postingList)->first != NULL) {
+        deleteListNode(&(*postingList)->first);
     }
-    free(postingList);
+    free(*postingList);
+    *postingList = NULL;
 }
 
 void incrementPostingList(TrieNode *node, int id) {
-    ListNode **current = &(node->postingList->first);
+    ListNode **current = &node->postingList->first;
     while (*current != NULL) {
         if ((*current)->id_times[0] == id) {
             (*current)->id_times[1]++;
             return;
         }
-        *current = (*current)->next;
+        current = &(*current)->next;
     }
     *current = createListNode(id);
     node->postingList->df++;
@@ -63,5 +68,6 @@ int getTermFrequency(PostingList *postingList, int id) {
         }
         current = current->next;
     }
+    current = NULL;
     return 0;
 }
