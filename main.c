@@ -90,6 +90,7 @@ int main(int argc, char *argv[]) {
     if (bufferptr != NULL) {
         free(bufferptr);
     }
+    fclose(fp);
     printf("Docs loaded successfully!\n");
 
     PostingList *pl = getPostingList(trie, "The");
