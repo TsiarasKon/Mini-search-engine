@@ -10,7 +10,7 @@ double IDF(Trie *root, char *word, int N) {
     if (postingList == NULL) {
         return -1;
     }
-    return 5;//log10((N - postingList->df + 0.5) / (postingList->df + 0.5));
+    return log10((N - postingList->df + 0.5) / (postingList->df + 0.5));
 }
 
 double score(Trie *root, char *word, int id, int D, double avgdl, int N) {

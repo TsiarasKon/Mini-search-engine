@@ -49,6 +49,7 @@ void incrementPostingList(TrieNode *node, int id) {
     if ((*PostingList)->first == NULL) {
         (*PostingList)->first = createListNode(id);
         (*PostingList)->last = (*PostingList)->first;
+        (*PostingList)->df++;
         return;
     }
     if ((*PostingList)->last->id_times[0] == id) {   // word belongs to the same (last) doc

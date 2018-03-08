@@ -41,7 +41,7 @@ HeapNode* heapMerge(HeapNode *heap1, HeapNode *heap2) {
     } else if (heap1->score > heap2->score) {
         addHeapChild(heap1, heap2);
         return heap1;
-    } else if (heap1->score < heap2->score) {
+    } else {        // (heap1->score <= heap2->score)
         addHeapChild(heap2, heap1);
         return heap2;
     }
@@ -61,7 +61,7 @@ HeapNode* mergePairs(HeapNode *children) {
 }
 
 HeapNode* heapInsert(HeapNode *heap, double score, int id) {
-    heapMerge(heap, createHeapNode(score, id));
+    return heapMerge(heap, createHeapNode(score, id));
 }
 
 HeapNode* deleteMaxNode(HeapNode *heap) {

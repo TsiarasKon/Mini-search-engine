@@ -3,9 +3,11 @@
 
 #include "postinglist.h"
 
-typedef struct postinglist PostingList;     // necessary forward declaration
-
+#ifndef TYPEDEFS     // needed forward declarations, avoiding redeclarations
+#define TYPEDEFS
+typedef struct postinglist PostingList;
 typedef struct trienode TrieNode;
+#endif
 typedef struct trie Trie;
 
 struct trienode {

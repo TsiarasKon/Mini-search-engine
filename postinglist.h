@@ -3,10 +3,12 @@
 
 #include "trie.h"
 
-typedef struct trienode TrieNode;      // necessary forward declaration
-
-typedef struct listnode ListNode;
+#ifndef TYPEDEFS     // needed forward declarations, avoiding redeclarations
+#define TYPEDEFS
 typedef struct postinglist PostingList;
+typedef struct trienode TrieNode;
+#endif
+typedef struct listnode ListNode;
 
 struct listnode {
     int id_times[2];

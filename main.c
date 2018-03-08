@@ -93,10 +93,10 @@ int main(int argc, char *argv[]) {
     fclose(fp);
     printf("Docs loaded successfully!\n");
 
-    PostingList *pl = getPostingList(trie, "The");
-    printf("1:[%d, %d], 2:[%d, %d]\n", pl->first->id_times[0], \
-pl->first->id_times[1], pl->first->next->id_times[0], \
-pl->first->next->id_times[1]);
+//    PostingList *pl = getPostingList(trie, "The");
+//    printf("1:[%d, %d], 2:[%d, %d]\n", pl->first->id_times[0], \
+//pl->first->id_times[1], pl->first->next->id_times[0], \
+//pl->first->next->id_times[1]);
     interface(trie, K, docs, doc_count);
 
     deleteTrie(&trie);
