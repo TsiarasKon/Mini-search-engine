@@ -17,6 +17,6 @@ void addHeapChild(HeapNode *heap, HeapNode *heapNode);
 HeapNode* heapMerge(HeapNode *heap1, HeapNode *heap2);
 HeapNode* mergePairs(HeapNode *children);
 HeapNode* heapInsert(HeapNode *heap, double score, int id);
-HeapNode* deleteMaxNode(HeapNode *heap);
+HeapNode* deleteMaxNode(HeapNode **heap);
 
 #endif

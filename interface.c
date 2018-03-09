@@ -70,10 +70,14 @@ void interface(Trie *trie, char **docs, int *docWc) {
                     }
                     doc_score += score(tf, tempPostingList->df, docWc[id]);
                 }
-                heap = heapInsert(heap, doc_score, id);
+                if (doc_score != 0) {
+                    heap = heapInsert(heap, doc_score, id);
+                }
             }
-            print_results(heap, docs);
-            destroyHeap(&heap);
+            print_results(&heap, docs);
+            if (heap != NULL) {
+                destroyHeap(&heap);
+            }
         } else if (!strcmp(command, cmds[1])) {       // df
             command = strtok(NULL, " \t");
             if (command == NULL) {          // full df

@@ -19,12 +19,17 @@ void destroyHeap(HeapNode **heapNode) {
     }
     if ((*heapNode)->children != NULL) {
         destroyHeap(&(*heapNode)->children);
+        (*heapNode)->children = NULL;
     }
     if ((*heapNode)->sibilings != NULL) {
         destroyHeap(&(*heapNode)->sibilings);
+        (*heapNode)->sibilings = NULL;
     }
     free(*heapNode);
     *heapNode = NULL;
+//    while (*heapNode != NULL) {
+//        *heapNode = deleteMaxNode(heapNode);
+//    }
 }
 
 void addHeapChild(HeapNode *heap, HeapNode *heapNode) {
@@ -64,6 +69,11 @@ HeapNode* heapInsert(HeapNode *heap, double score, int id) {
     return heapMerge(heap, createHeapNode(score, id));
 }
 
-HeapNode* deleteMaxNode(HeapNode *heap) {
-    return mergePairs(heap->children);
+HeapNode* deleteMaxNode(HeapNode **heap) {
+    if (*heap == NULL) {
+        return NULL;
+    }
+    HeapNode* children = (*heap)->children;
+    free(*heap);
+    return mergePairs(children);
 }
