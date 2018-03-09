@@ -12,11 +12,12 @@ extern int doc_count;
 
 void interface(Trie *trie, char **docs, int *docWc) {
     char *command;
-    char *cmds[4];
+    char *cmds[5];
     cmds[0] = "/search";
     cmds[1] = "/df";
     cmds[2] = "/tf";
     cmds[3] = "/exit";
+    cmds[4] = "/help";
     size_t bufsize = 32;      // sample size - getline will reallocate memory as needed
     char *buffer = malloc(bufsize);
     char *bufferptr = buffer;       // used to free buffer in the end, since we're using strtok
@@ -107,9 +108,16 @@ void interface(Trie *trie, char **docs, int *docWc) {
             printf("%d %s %d\n", id, command, getTermFrequency(postingList, id));
         } else if (!strcmp(command, cmds[3])) {       // exit
             break;
+        } else if (!strcmp(command, cmds[4])) {       // help
+            printf("Available commands (use without quotes):\n");
+            printf(" '/search word1 word2 ... word10' for a list of the top-K most relevant docs with the given words. Only up to 10 words per search query are currently supported. \n");
+            printf(" '/df' for an alphabetically ordered list of all words appearing in all docs along with their document frequency.\n");
+            printf(" '/df word' for the document frequency of a single word.\n");
+            printf(" '/tf id word' for the term frequency of a single word in the document with the given id.\n");
+            printf(" '/help' for the list you're seeing right now.\n");
+            printf(" '/exit' to terminate this program.\n");
         } else {
-            printf("Unknown command '%s'.\n", command);
-            /// Implement /help
+            printf("Unknown command '%s' - Type '/help' for a detailed list of available commands.\n", command);
         }
     }
     free(bufferptr);
