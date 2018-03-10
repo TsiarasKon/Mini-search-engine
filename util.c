@@ -31,13 +31,12 @@ char word_in(char *word, char **word_list) {
     return 0;
 }
 
-
 void print_results(HeapNode **heap, char **docs, char **terms) {
     if (*heap == NULL) {
         printf("No results found.\n");
     }
     int margins[4];
-    margins[1] = (K < 10) ? 1 : 2;
+    margins[1] = ((int) log10(K)) + 1;
     margins[2] = ((int) log10(doc_count)) + 1;
     margins[3] = 4;         // score decimal precision
     margins[0] = margins[1] + margins[2] + margins[3] + 8;    // total margin sum including parenthesis, braces, etc
@@ -72,7 +71,6 @@ void print_results(HeapNode **heap, char **docs, char **terms) {
                     }
                     curr_col = 0;
                     while (curr_col < cols_to_write - 1 && curr_word != NULL) {
-                        //printf("\n%d %d\n", curr_col, cols_to_write);
                         curr_word_len = strlen(curr_word);
                         if (curr_word_len > cols_to_write - curr_col - 1) {     // word doesn't fit in terminal
                             break;

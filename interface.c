@@ -12,12 +12,13 @@ extern int doc_count;
 
 void interface(Trie *trie, char **docs, int *docWc) {
     char *command;
-    char *cmds[5];
+    char *cmds[6];
     cmds[0] = "/search";
     cmds[1] = "/df";
     cmds[2] = "/tf";
     cmds[3] = "/exit";
-    cmds[4] = "/help";
+    cmds[4] = "/k";
+    cmds[5] = "/help";
     size_t bufsize = 32;      // sample size - getline will reallocate memory as needed
     char *buffer = malloc(bufsize);
     char *bufferptr = buffer;       // used to free buffer in the end, since we're using strtok
@@ -29,7 +30,7 @@ void interface(Trie *trie, char **docs, int *docWc) {
         if (!strcmp(command, cmds[0]) || !strcmp(command, "/s")) {              // search
             command = strtok(NULL, " \t");
             if (command == NULL) {
-                printf("Invalid use of '/search' - At least one query term is required.\n");
+                fprintf(stderr, "Invalid use of '/search' - At least one query term is required.\n");
                 continue;
             }
             char *terms[10];
@@ -86,7 +87,7 @@ void interface(Trie *trie, char **docs, int *docWc) {
             } else {        // single word df
                 PostingList *postingList = getPostingList(trie, command);
                 if (postingList == NULL) {
-                    printf("\"%s\" doesn't exist in any of the docs.\n", command);
+                    fprintf(stderr, "\"%s\" doesn't exist in any of the docs.\n", command);
                     continue;
                 }
                 printf("%s %d\n", command, postingList->df);
@@ -94,13 +95,13 @@ void interface(Trie *trie, char **docs, int *docWc) {
         } else if (!strcmp(command, cmds[2])) {       // tf
             command = strtok(NULL, " \t");
             if (command == NULL || !isdigit(*command)) {
-                printf("Invalid use of '/tf' - No doc specified.\n");
+                fprintf(stderr, "Invalid use of '/tf' - No doc specified.\n");
                 continue;
             }
             int id = atoi(command);
             command = strtok(NULL, " \t");
             if (command == NULL) {
-                printf("Invalid use of '/tf' - No word specified.\n");
+                fprintf(stderr, "Invalid use of '/tf' - No word specified.\n");
                 continue;
             }
             PostingList *postingList = getPostingList(trie, command);
@@ -108,16 +109,30 @@ void interface(Trie *trie, char **docs, int *docWc) {
             printf("%d %s %d\n", id, command, getTermFrequency(postingList, id));
         } else if (!strcmp(command, cmds[3])) {       // exit
             break;
-        } else if (!strcmp(command, cmds[4])) {       // help
+        } else if (!strcmp(command, cmds[4])) {       // k
+            command = strtok(NULL, " \t");
+            if (command == NULL || !isdigit(*command)) {
+                fprintf(stderr, "Invalid use of '/k' - No K specified.\n");
+                continue;
+            }
+            int newK = atoi(command);
+            if (newK < 1) {
+                fprintf(stderr, "Invalid use of '/k' - K must be greater than 0.\n");
+                continue;
+            }
+            K = newK;
+            printf("K successfully set to %d.\n", K);
+        }else if (!strcmp(command, cmds[5])) {       // help
             printf("Available commands (use without quotes):\n");
             printf(" '/search word1 word2 ... word10' for a list of the top-K most relevant docs with the given words. Only up to 10 words per search query are currently supported. \n");
             printf(" '/df' for an alphabetically ordered list of all words appearing in all docs along with their document frequency.\n");
             printf(" '/df word' for the document frequency of a single word.\n");
             printf(" '/tf id word' for the term frequency of a single word in the document with the given id.\n");
+            printf(" '/k K' for setting number of search results to K.\n");
             printf(" '/help' for the list you're seeing right now.\n");
             printf(" '/exit' to terminate this program.\n");
         } else {
-            printf("Unknown command '%s' - Type '/help' for a detailed list of available commands.\n", command);
+            fprintf(stderr, "Unknown command '%s' - Type '/help' for a detailed list of available commands.\n", command);
         }
     }
     free(bufferptr);
