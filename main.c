@@ -78,14 +78,16 @@ int main(int argc, char *argv[]) {
             return -1;
         }
         bufferptr = buffer;
-        while (*buffer == ' ' || *buffer == '\t' || isdigit(*buffer)) {
+        while (*buffer == ' ' || *buffer == '\t') {         // ignore whitespace before id
+            buffer++;
+        }
+        while (isdigit(*buffer)) {          // ignore the id itself
             buffer++;
         }
         strtok(buffer, "\r\n");         // remove trailing newline character
         docs[id] = malloc(strlen(buffer) + 1);
         strcpy(docs[id], buffer);
-        strtok(buffer, " \t");          // skip index number in front of doc
-        word = strtok(NULL, " \t");     // get first word
+        word = strtok(buffer, " \t");     // get first word
         while (word != NULL) {          // for every word in doc
             insert(trie, word, id);
             docWc[id]++;

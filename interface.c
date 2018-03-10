@@ -88,7 +88,7 @@ void interface(Trie *trie, char **docs, int *docWc) {
             } else {        // single word df
                 PostingList *postingList = getPostingList(trie, command);
                 if (postingList == NULL) {
-                    fprintf(stderr, "\"%s\" doesn't exist in any of the docs.\n", command);
+                    printf("\"%s\" doesn't exist in any of the docs.\n", command);
                     continue;
                 }
                 printf("%s %d\n", command, postingList->df);
