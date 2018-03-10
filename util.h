@@ -7,6 +7,7 @@
 double IDF(int df);
 double score(int tf, int df, int D);
 
-void print_results(HeapNode **heap, char **docs);
+char word_in(char *word, char **word_list);
+void print_results(HeapNode **heap, char **docs, char **terms);
 
 #endif

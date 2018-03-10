@@ -75,7 +75,7 @@ void interface(Trie *trie, char **docs, int *docWc) {
                     heap = heapInsert(heap, doc_score, id);
                 }
             }
-            print_results(&heap, docs);
+            print_results(&heap, docs, terms);
             if (heap != NULL) {
                 destroyHeap(&heap);
             }

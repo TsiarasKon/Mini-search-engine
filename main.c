@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
             return -1;
         }
         bufferptr = buffer;
-        while (*buffer == ' ' || *buffer == '\t') {
+        while (*buffer == ' ' || *buffer == '\t' || isdigit(*buffer)) {
             buffer++;
         }
         strtok(buffer, "\r\n");         // remove trailing newline character

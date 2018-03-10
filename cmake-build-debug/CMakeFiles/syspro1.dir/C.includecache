@@ -77,7 +77,13 @@ postinglist.h
 /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.c
 stdio.h
 -
+sys/ioctl.h
+-
+unistd.h
+-
 math.h
+-
+string.h
 -
 util.h
 /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.h
