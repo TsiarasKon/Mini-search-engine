@@ -21,10 +21,11 @@ void interface(Trie *trie, char **docs, int *docWc) {
     cmds[5] = "/help";
     size_t bufsize = 32;      // sample size - getline will reallocate memory as needed
     char *buffer = malloc(bufsize);
-    char *bufferptr = buffer;       // used to free buffer in the end, since we're using strtok
+    char *bufferptr;       // used to free buffer in the end, since we're using strtok
     while (1) {
         printf("Type a command:\n");
         getline(&buffer, &bufsize, stdin);
+        bufferptr = buffer;
         strtok(buffer, "\r\n");     // remove trailing newline character
         command = strtok(buffer, " ");
         if (!strcmp(command, cmds[0]) || !strcmp(command, "/s")) {              // search
@@ -134,6 +135,7 @@ void interface(Trie *trie, char **docs, int *docWc) {
         } else {
             fprintf(stderr, "Unknown command '%s' - Type '/help' for a detailed list of available commands.\n", command);
         }
+        buffer = bufferptr;
     }
     free(bufferptr);
 }

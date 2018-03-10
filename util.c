@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <math.h>
 #include <string.h>
 #include "util.h"
@@ -39,7 +40,7 @@ void print_results(HeapNode **heap, char **docs, char **terms) {
     margins[1] = ((int) log10(K)) + 1;
     margins[2] = ((int) log10(doc_count)) + 1;
     margins[3] = 4;         // score decimal precision
-    margins[0] = margins[1] + margins[2] + margins[3] + 8;    // total margin sum including parenthesis, braces, etc
+    margins[0] = margins[1] + margins[2] + margins[3] + 9;    // total margin sum including parenthesis, braces, etc
     for (int k = 0; k < K; k++) {
         if (*heap == NULL) {
             break;
@@ -47,7 +48,7 @@ void print_results(HeapNode **heap, char **docs, char **terms) {
         struct winsize w;
         ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
         if (w.ws_col <= margins[0] + 1) {       // terminal too narrow - cannot pretty print
-            printf("%*d.(%*d)[%.*f] %s\n", margins[1], k, margins[2], (*heap)->id, margins[3], (*heap)->score, docs[(*heap)->id]);
+            printf("%*d.(%*d)[%*.*f] %s\n", margins[1], k, margins[2], (*heap)->id, margins[3] + 3, margins[3], (*heap)->score, docs[(*heap)->id]);
             *heap = deleteMaxNode(heap);
         } else {
             int curr_col;
@@ -55,11 +56,14 @@ void print_results(HeapNode **heap, char **docs, char **terms) {
             int cols_to_write = w.ws_col - margins[0];
             char underlines[cols_to_write];
             char result = 0;    // 0 for the first time, 1 for the rest, -1 for '^'
-            char *curr_word = strtok(docs[(*heap)->id], " \t");
+            char *curr_doc = malloc(strlen(docs[(*heap)->id]) + 1);
+            char *curr_doc_ptr = curr_doc;
+            strcpy(curr_doc, docs[(*heap)->id]);
+            char *curr_word = strtok(curr_doc, " \t");
             while (curr_word != NULL || result <= 0) {
                 if (result >= 0) {
                     if (result == 0) {
-                        printf("%*d.(%*d)[%.*f] ", margins[1], k, margins[2], (*heap)->id, margins[3], (*heap)->score);
+                        printf("%*d.(%*d)[%*.*f] ", margins[1], k, margins[2], (*heap)->id, margins[3] + 3, margins[3], (*heap)->score);
                     } else {
                         for (int i = 0; i < margins[0]; i++) {
                             printf(" ");
@@ -99,6 +103,7 @@ void print_results(HeapNode **heap, char **docs, char **terms) {
                     result = 1;
                 }
             }
+            free(curr_doc_ptr);
             *heap = deleteMaxNode(heap);
         }
     }
