@@ -10,7 +10,7 @@
 extern int K;
 extern int doc_count;
 
-void interface(Trie *trie, char **docs, int *docWc) {
+int interface(Trie *trie, char **docs, int *docWc) {
     char *command;
     char *cmds[6];
     cmds[0] = "/search";
@@ -21,6 +21,10 @@ void interface(Trie *trie, char **docs, int *docWc) {
     cmds[5] = "/help";
     size_t bufsize = 32;      // sample size - getline will reallocate memory as needed
     char *buffer = malloc(bufsize);
+    if (buffer == NULL) {
+        fprintf(stderr, "Failed to allocate memory.\n");
+        return 4;
+    }
     char *bufferptr;       // used to free buffer in the end, since we're using strtok
     while (1) {
         printf("Type a command:\n");
@@ -77,14 +81,20 @@ void interface(Trie *trie, char **docs, int *docWc) {
                     heap = heapInsert(heap, doc_score, id);
                 }
             }
-            print_results(&heap, docs, terms);
+            int exit_code = print_results(&heap, docs, terms);
             if (heap != NULL) {
                 destroyHeap(&heap);
+            }
+            if (exit_code > 0) {
+                return exit_code;
             }
         } else if (!strcmp(command, cmds[1])) {       // df
             command = strtok(NULL, " \t");
             if (command == NULL) {          // full df
-                printTrie(trie);
+                int exit_code = printTrie(trie);
+                if (exit_code > 0) {
+                    return exit_code;
+                }
             } else {        // single word df
                 while (command != NULL) {
                     int df = 0;
@@ -141,5 +151,6 @@ void interface(Trie *trie, char **docs, int *docWc) {
         buffer = bufferptr;
     }
     free(bufferptr);
+    return 0;
 }
 

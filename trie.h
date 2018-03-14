@@ -3,7 +3,7 @@
 
 #include "postinglist.h"
 
-#ifndef TYPEDEFS     // needed forward declarations, avoiding redeclarations
+#ifndef TYPEDEFS     // needed forward declarations, avoiding redefinitions
 #define TYPEDEFS
 typedef struct postinglist PostingList;
 typedef struct trienode TrieNode;
@@ -26,12 +26,12 @@ void deleteTrieNode(TrieNode **trieNode);
 Trie* createTrie();
 void deleteTrie(Trie **trie);
 
-void directInsert(TrieNode *current, char *word, int id, int i);
-void insert(Trie *root, char *word, int id);
+int directInsert(TrieNode *current, char *word, int id, int i);
+int insert(Trie *root, char *word, int id);
 
 PostingList *getPostingList(Trie *root, char *word);
 
-void printTrieNode(TrieNode *node, char *prefix);
-void printTrie(Trie *root);
+int printTrieNode(TrieNode *node, char *prefix);
+int printTrie(Trie *root);
 
 #endif

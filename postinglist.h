@@ -3,7 +3,7 @@
 
 #include "trie.h"
 
-#ifndef TYPEDEFS     // needed forward declarations, avoiding redeclarations
+#ifndef TYPEDEFS     // needed forward declarations, avoiding redefinitions
 #define TYPEDEFS
 typedef struct postinglist PostingList;
 typedef struct trienode TrieNode;
@@ -26,7 +26,7 @@ void deleteListNode(ListNode **listNode);
 PostingList* createPostingList();
 void deletePostingList(PostingList **postingList);
 
-void incrementPostingList(TrieNode *node, int id);
+int incrementPostingList(TrieNode *node, int id);
 int getTermFrequency(PostingList *postingList, int id);
 
 #endif

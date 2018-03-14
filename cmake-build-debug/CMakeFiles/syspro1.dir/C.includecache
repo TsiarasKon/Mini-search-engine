@@ -33,10 +33,6 @@ ctype.h
 -
 trie.h
 /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/trie.h
-util.h
-/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/util.h
-pairingheap.h
-/home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/pairingheap.h
 
 /home/ch0sen/Desktop/MyProjects/DI/Mini-search-engine/pairingheap.c
 stdio.h

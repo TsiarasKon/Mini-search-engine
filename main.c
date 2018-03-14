@@ -4,17 +4,16 @@
 #include <string.h>
 #include <ctype.h>
 #include "trie.h"
-#include "util.h"
-#include "pairingheap.h"
 
 int K = 10;     // default number of results
 int doc_count = 0;
 double avgdl = 0.0;
 
-void interface(Trie *trie, char **docs, int *docWc);
+int interface(Trie *trie, char **docs, int *docWc);
 
 int main(int argc, char *argv[]) {
     char *docfile = NULL;
+    // Validate command line arguments, in any order given:
     for (int i = 1; i < argc; i += 2) {
         if (!strcmp(argv[i], "-i")) {
             if (i == argc) {
@@ -68,9 +67,14 @@ int main(int argc, char *argv[]) {
     rewind(fp);     // start again from the beginning of docfile
 
     Trie* trie = createTrie();
+    if (trie == NULL) {
+        fprintf(stderr, "Failed to allocate memory.\n");
+        return 4;
+    }
     char *docs[doc_count];
     char *word;
     int docWc[doc_count];
+    int exit_code;
     for (int id = 0; id < doc_count; id++) {
         docWc[id] = 0;
         if (getline(&buffer, &bufsize, fp) == -1) {
@@ -86,10 +90,17 @@ int main(int argc, char *argv[]) {
         }
         strtok(buffer, "\r\n");         // remove trailing newline character
         docs[id] = malloc(strlen(buffer) + 1);
+        if (docs[id] == NULL) {
+            fprintf(stderr, "Failed to allocate memory.\n");
+            return 4;
+        }
         strcpy(docs[id], buffer);
         word = strtok(buffer, " \t");     // get first word
         while (word != NULL) {          // for every word in doc
-            insert(trie, word, id);
+            exit_code = insert(trie, word, id);
+            if (exit_code > 0) {
+                return exit_code;
+            }
             docWc[id]++;
             avgdl++;
             word = strtok(NULL, " \t");
@@ -102,13 +113,20 @@ int main(int argc, char *argv[]) {
     fclose(fp);
     printf("Docs loaded successfully!\n");
 
-    interface(trie, docs, docWc);
+    exit_code = interface(trie, docs, docWc);
 
     deleteTrie(&trie);
     for (int i = 0; i < doc_count; i++) {
         free(docs[i]);
     }
-    return 0;
+    return exit_code;
 }
 
-
+/* Exit codes:
+ * 0: Success
+ * 1: Invalid command line arguments
+ * 2: Failed to open given file
+ * 3: Docs in file not in order
+ * 4: Memory allocation failed
+ * -1: Another unexpected error
+*/

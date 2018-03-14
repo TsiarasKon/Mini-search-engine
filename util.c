@@ -32,7 +32,7 @@ char word_in(char *word, char **word_list) {
     return 0;
 }
 
-void print_results(HeapNode **heap, char **docs, char **terms) {
+int print_results(HeapNode **heap, char **docs, char **terms) {
     if (*heap == NULL) {
         printf("No results found.\n");
     }
@@ -48,6 +48,7 @@ void print_results(HeapNode **heap, char **docs, char **terms) {
         struct winsize w;
         ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
         if (w.ws_col <= margins[0] + 1) {       // terminal too narrow - cannot pretty print
+            fprintf(stderr, "Terminal too narrow - Results will be printed unaligned.\n");
             printf("%*d.(%*d)[%*.*f] %s\n", margins[1], k, margins[2], (*heap)->id, margins[3] + 3, margins[3], (*heap)->score, docs[(*heap)->id]);
             *heap = deleteMaxNode(heap);
         } else {
@@ -57,6 +58,10 @@ void print_results(HeapNode **heap, char **docs, char **terms) {
             char underlines[cols_to_write];
             char result = 0;    // 0 for the first time, 1 for the rest, -1 for '^'
             char *curr_doc = malloc(strlen(docs[(*heap)->id]) + 1);
+            if (curr_doc == NULL) {
+                fprintf(stderr, "Failed to allocate memory.\n");
+                return 4;
+            }
             char *curr_doc_ptr = curr_doc;
             strcpy(curr_doc, docs[(*heap)->id]);
             char *curr_word = strtok(curr_doc, " \t");
@@ -76,7 +81,11 @@ void print_results(HeapNode **heap, char **docs, char **terms) {
                     curr_col = 0;
                     while (curr_col < cols_to_write - 1 && curr_word != NULL) {
                         curr_word_len = strlen(curr_word);
-                        if (curr_word_len > cols_to_write - curr_col - 1) {     // word doesn't fit in terminal
+                        if (curr_word_len > cols_to_write - 1) {
+                            fprintf(stderr, "Terminal too narrow - Results printing was aborted.\n");
+                            return -2;
+                        }
+                        if (curr_word_len > cols_to_write - curr_col - 1) {     // word doesn't fit in terminal - abort printing
                             break;
                         }
                         if (word_in(curr_word, terms) == 1) {
@@ -107,4 +116,5 @@ void print_results(HeapNode **heap, char **docs, char **terms) {
             *heap = deleteMaxNode(heap);
         }
     }
+    return 0;
 }

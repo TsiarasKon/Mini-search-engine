@@ -4,6 +4,10 @@
 
 ListNode* createListNode(int id) {
     ListNode *listNode = malloc(sizeof(ListNode));
+    if (listNode == NULL) {
+        fprintf(stderr, "Failed to allocate memory.\n");
+        return NULL;
+    }
     listNode->id_times[0] = id;
     listNode->id_times[1] = 1;
     listNode->next = NULL;
@@ -27,6 +31,10 @@ void deleteListNode(ListNode **listNode) {
 
 PostingList* createPostingList() {
     PostingList *postingList = malloc(sizeof(PostingList));
+    if (postingList == NULL) {
+        fprintf(stderr, "Failed to allocate memory.\n");
+        return NULL;
+    }
     postingList->df = 0;
     postingList->first = postingList->last = NULL;
     return postingList;
@@ -44,21 +52,30 @@ void deletePostingList(PostingList **postingList) {
     *postingList = NULL;
 }
 
-void incrementPostingList(TrieNode *node, int id) {
+int incrementPostingList(TrieNode *node, int id) {
     PostingList **PostingList = &node->postingList;
     if ((*PostingList)->first == NULL) {
         (*PostingList)->first = createListNode(id);
+        if ((*PostingList)->first == NULL) {
+            fprintf(stderr, "Failed to allocate memory.\n");
+            return 4;
+        }
         (*PostingList)->last = (*PostingList)->first;
         (*PostingList)->df++;
-        return;
+        return 0;
     }
     if ((*PostingList)->last->id_times[0] == id) {   // word belongs to the same (last) doc
         (*PostingList)->last->id_times[1]++;
     } else {
         (*PostingList)->last->next = createListNode(id);
+        if ((*PostingList)->last->next == NULL) {
+            fprintf(stderr, "Failed to allocate memory.\n");
+            return 4;
+        }
         (*PostingList)->last = (*PostingList)->last->next;
         (*PostingList)->df++;
     }
+    return 0;
 }
 
 int getTermFrequency(PostingList *postingList, int id) {

@@ -8,10 +8,8 @@ CMakeFiles/syspro1.dir/interface.c.o: ../trie.h
 CMakeFiles/syspro1.dir/interface.c.o: ../util.h
 
 CMakeFiles/syspro1.dir/main.c.o: ../main.c
-CMakeFiles/syspro1.dir/main.c.o: ../pairingheap.h
 CMakeFiles/syspro1.dir/main.c.o: ../postinglist.h
 CMakeFiles/syspro1.dir/main.c.o: ../trie.h
-CMakeFiles/syspro1.dir/main.c.o: ../util.h
 
 CMakeFiles/syspro1.dir/pairingheap.c.o: ../pairingheap.c
 CMakeFiles/syspro1.dir/pairingheap.c.o: ../pairingheap.h
