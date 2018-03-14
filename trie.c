@@ -1,6 +1,6 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 #include "trie.h"
 
 TrieNode* createTrieNode(char value, TrieNode *next) {
@@ -16,7 +16,7 @@ TrieNode* createTrieNode(char value, TrieNode *next) {
     return nptr;
 }
 
-void deleteTrieNode(TrieNode **trieNode) {
+void deleteTrieNode(TrieNode **trieNode) {      // called by deleteTrie() to delete the entire trie
     if (trieNode == NULL) {
         fprintf(stderr, "Attempted to delete a NULL TrieNode.\n");
         return;
@@ -54,6 +54,9 @@ void deleteTrie(Trie **trie) {
     *trie = NULL;
 }
 
+/* Called by insert() when a new trieNode->child is created.
+ * At that point no further checking is required to insert the rest of the word's letters
+ * as each one of them will merely create a new trieNode. */
 int directInsert(TrieNode *current, char *word, int id, int i) {
     while (i < strlen(word) - 1) {
         current->child = createTrieNode(word[i], NULL);
@@ -79,16 +82,16 @@ int insert(Trie *root, char *word, int id) {
     size_t wordlen = strlen(word);
     if (root->first == NULL) {      // only in first Trie insert
         root->first = createTrieNode(word[0], NULL);
-        if (wordlen == 1) {     // just inserted the final letter
+        if (wordlen == 1) {     // just inserted the final letter (one-letter word)
             incrementPostingList(root->first, id);
             return 0;
         }
         return directInsert(root->first, word, id, 1);
     }
     TrieNode **current = &root->first;
-    for (int i = 0; i < wordlen; i++) {
-        while (word[i] > (*current)->value) {
-            if ((*current)->next == NULL) {
+    for (int i = 0; i < wordlen; i++) {         // for each letter of word
+        while (word[i] > (*current)->value) {       // keep searching this level of trie
+            if ((*current)->next == NULL) {             // no next - create trieNode in this level
                 (*current)->next = createTrieNode(word[i], NULL);
                 if ((*current)->next == NULL) {
                     fprintf(stderr, "Failed to allocate memory.\n");
@@ -97,7 +100,7 @@ int insert(Trie *root, char *word, int id) {
             }
             current = &(*current)->next;
         }
-        if ((*current) != NULL && word[i] < (*current)->value) {        // must be inserted before
+        if ((*current) != NULL && word[i] < (*current)->value) {      // must be inserted before to keep sorted
             TrieNode *newNode = createTrieNode(word[i], (*current));
             if (newNode == NULL) {
                 fprintf(stderr, "Failed to allocate memory.\n");
@@ -130,7 +133,8 @@ PostingList *getPostingList(Trie *root, char *word) {
             }
             current = current->next;
         }
-        if (word[i] < current->value) {        // must be inserted before
+        // Since letters are sorted in each level, if we surpass word[i] then word doesn't exist:
+        if (word[i] < current->value) {
             return NULL;
         }
         // Go to next letter:
@@ -138,7 +142,7 @@ PostingList *getPostingList(Trie *root, char *word) {
             return current->postingList;
         } else if (current->child != NULL) {     // proceed to child
             current = current->child;
-        } else {            // child doesn't exist
+        } else {            // child doesn't exist - word doesn't exist
             return NULL;
         }
     }
@@ -154,14 +158,14 @@ int printTrieNode(TrieNode *node, char *prefix) {
         return 4;
     }
     strcpy(word, prefix);
-    word[prefixLen + 1] = '\0';
+    word[prefixLen + 1] = '\0';     // "manually" null-terminate string
     int exit_code;
     while (currentChild != NULL) {
-        word[prefixLen] = currentChild->value;
-        if (currentChild->postingList->first != NULL) {
+        word[prefixLen] = currentChild->value;      // "word" is the so-far prefix + current letter
+        if (currentChild->postingList->first != NULL) {     // if "word" is exists as a word in trie
             printf("%s %d\n", word, currentChild->postingList->df);
         }
-        exit_code = printTrieNode(currentChild, word);
+        exit_code = printTrieNode(currentChild, word);     // print all the words with "word" as a prefix
         if (exit_code > 0) {
             return exit_code;
         }
@@ -174,14 +178,14 @@ int printTrieNode(TrieNode *node, char *prefix) {
 int printTrie(Trie *root) {
     TrieNode *current = root->first;
     char first_letter[2];
-    first_letter[1] = '\0';
+    first_letter[1] = '\0';     // "manually" null-terminate string
     int exit_code;
-    while (current != NULL) {
-        if (current->postingList->first != NULL) {
+    while (current != NULL) {   // for each letter in the first level of trie
+        if (current->postingList->first != NULL) {      // if first_letter exists as a word in trie
             printf("%c %d\n", current->value, current->postingList->df);
         }
         first_letter[0] = current->value;
-        exit_code = printTrieNode(current, first_letter);
+        exit_code = printTrieNode(current, first_letter);   // print all the words starting from first_letter
         if (exit_code > 0) {
             return exit_code;
         }

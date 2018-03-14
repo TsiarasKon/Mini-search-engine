@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
             break;
         }
         bufferptr = buffer;
-        while (*buffer == ' ' || *buffer == '\t') {
+        while (*buffer == ' ' || *buffer == '\t') {     // ignore whitespace before id
             buffer++;
         }
         if (atoi(buffer) != i) {
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Failed to allocate memory.\n");
         return 4;
     }
-    char *docs[doc_count];
+    char *docs[doc_count];      // "map"
     char *word;
     int docWc[doc_count];
     int exit_code;
@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
             return -1;
         }
         bufferptr = buffer;
-        while (*buffer == ' ' || *buffer == '\t') {         // ignore whitespace before id
+        while (*buffer == ' ' || *buffer == '\t') {     // ignore whitespace before id
             buffer++;
         }
         while (isdigit(*buffer)) {          // ignore the id itself
@@ -105,7 +105,7 @@ int main(int argc, char *argv[]) {
             avgdl++;
             word = strtok(NULL, " \t");
         }
-        buffer = bufferptr;     // resetting buffer that maybe was moved
+        buffer = bufferptr;     // resetting buffer that was moved
     }
     if (bufferptr != NULL) {
         free(bufferptr);
@@ -128,5 +128,5 @@ int main(int argc, char *argv[]) {
  * 2: Failed to open given file
  * 3: Docs in file not in order
  * 4: Memory allocation failed
- * -1: Another unexpected error
+ * -1: Some unexpected error
 */

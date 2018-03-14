@@ -25,17 +25,19 @@ int interface(Trie *trie, char **docs, int *docWc) {
         fprintf(stderr, "Failed to allocate memory.\n");
         return 4;
     }
-    char *bufferptr;       // used to free buffer in the end, since we're using strtok
+    char *bufferptr;       // used to free buffer after using strtok
     while (1) {
+        // Until "\exit" is given, read current line and attempt to execute it as a command
         printf("Type a command:\n");
         getline(&buffer, &bufsize, stdin);
         bufferptr = buffer;
         strtok(buffer, "\r\n");     // remove trailing newline character
         command = strtok(buffer, " ");
-        if (!strcmp(command, cmds[0]) || !strcmp(command, "/s")) {              // search
+        if (!strcmp(command, cmds[0]) || !strcmp(command, "/s")) {          // search
             command = strtok(NULL, " \t");
             if (command == NULL) {
-                fprintf(stderr, "Invalid use of '/search' - At least one query term is required.\n");
+                fprintf(stderr, "Invalid use of '/search': At least one query term is required.\n");
+                fprintf(stderr, "  Type '/help' to see the correct syntax.\n");
                 continue;
             }
             char *terms[10];
@@ -51,6 +53,12 @@ int interface(Trie *trie, char **docs, int *docWc) {
                 command = strtok(NULL, " \t");
             }
 
+            /* For each term, we'll start by keeping a pointer to its first postingList (postingListPtr array)
+             * Then, we'll iterate through all the docs adding and checking these pointers for each one.
+             * If the postingListPtr[i] points to a list with id less than the current's doc_id, we point it to its next.
+             * If we surpass it, since the listNodes are in order of id, there is no postinglist for this doc in that term.
+             * Else, if a match is found, we calculate the score() for this doc and term.
+             * Each doc with a non-zero score is then added to a pairing heap for later printing. */
             HeapNode *heap = NULL;
             ListNode *postingListPtr[term_count];
             PostingList *tempPostingList;
@@ -66,6 +74,7 @@ int interface(Trie *trie, char **docs, int *docWc) {
                     while (postingListPtr[i] != NULL && postingListPtr[i]->id_times[0] < id) {
                         postingListPtr[i] = postingListPtr[i]->next;
                     }
+                    // We suprassed the id - term is not contained in current doc
                     if (postingListPtr[i] == NULL || postingListPtr[i]->id_times[0] > id) {
                         continue;
                     }
@@ -85,7 +94,7 @@ int interface(Trie *trie, char **docs, int *docWc) {
             if (heap != NULL) {
                 destroyHeap(&heap);
             }
-            if (exit_code > 0) {
+            if (exit_code > 0) {      // failed to print results (due to an inability to allocate memory)
                 return exit_code;
             }
         } else if (!strcmp(command, cmds[1])) {       // df
@@ -95,7 +104,7 @@ int interface(Trie *trie, char **docs, int *docWc) {
                 if (exit_code > 0) {
                     return exit_code;
                 }
-            } else {        // single word df
+            } else {        // df for particular word(s)
                 while (command != NULL) {
                     int df = 0;
                     PostingList *postingList = getPostingList(trie, command);
@@ -109,13 +118,15 @@ int interface(Trie *trie, char **docs, int *docWc) {
         } else if (!strcmp(command, cmds[2])) {       // tf
             command = strtok(NULL, " \t");
             if (command == NULL || !isdigit(*command)) {
-                fprintf(stderr, "Invalid use of '/tf' - No doc specified.\n");
+                fprintf(stderr, "Invalid use of '/tf': No doc specified.\n");
+                fprintf(stderr, "  Type '/help' to see the correct syntax.\n");
                 continue;
             }
             int id = atoi(command);
             command = strtok(NULL, " \t");
             if (command == NULL) {
-                fprintf(stderr, "Invalid use of '/tf' - No word specified.\n");
+                fprintf(stderr, "Invalid use of '/tf': No word specified.\n");
+                fprintf(stderr, "  Type '/help' to see the correct syntax.\n");
                 continue;
             }
             PostingList *postingList = getPostingList(trie, command);
@@ -126,12 +137,14 @@ int interface(Trie *trie, char **docs, int *docWc) {
         } else if (!strcmp(command, cmds[4])) {       // k
             command = strtok(NULL, " \t");
             if (command == NULL || !isdigit(*command)) {
-                fprintf(stderr, "Invalid use of '/k' - No K specified.\n");
+                fprintf(stderr, "Invalid use of '/k': No K specified.\n");
+                fprintf(stderr, "  Type '/help' to see the correct syntax.\n");
                 continue;
             }
             int newK = atoi(command);
             if (newK < 1) {
-                fprintf(stderr, "Invalid use of '/k' - K must be greater than 0.\n");
+                fprintf(stderr, "Invalid use of '/k': K must be greater than 0.\n");
+                fprintf(stderr, "  Type '/help' to see the correct syntax.\n");
                 continue;
             }
             K = newK;
@@ -142,11 +155,11 @@ int interface(Trie *trie, char **docs, int *docWc) {
             printf(" '/df' for an alphabetically ordered list of all words appearing in all docs along with their document frequency.\n");
             printf(" '/df word1 word2 ...' for the document frequency of the given words only.\n");
             printf(" '/tf id word' for the term frequency of a single word in the document with the given id.\n");
-            printf(" '/k K' for setting number of search results to K.\n");
+            printf(" '/k K' for setting number of search results to K, where K is a positive integer.\n");
             printf(" '/help' for the list you're seeing right now.\n");
             printf(" '/exit' to terminate this program.\n");
         } else {
-            fprintf(stderr, "Unknown command '%s' - Type '/help' for a detailed list of available commands.\n", command);
+            fprintf(stderr, "Unknown command '%s': Type '/help' for a detailed list of available commands.\n", command);
         }
         buffer = bufferptr;
     }

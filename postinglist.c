@@ -9,7 +9,7 @@ ListNode* createListNode(int id) {
         return NULL;
     }
     listNode->id_times[0] = id;
-    listNode->id_times[1] = 1;
+    listNode->id_times[1] = 1;      // word exists 1 time in doc #id
     listNode->next = NULL;
     return listNode;
 }
@@ -46,7 +46,7 @@ void deletePostingList(PostingList **postingList) {
         return;
     }
     if ((*postingList)->first != NULL) {
-        deleteListNode(&(*postingList)->first);
+        deleteListNode(&(*postingList)->first);     // delete the entire list
     }
     free(*postingList);
     *postingList = NULL;
@@ -54,6 +54,7 @@ void deletePostingList(PostingList **postingList) {
 
 int incrementPostingList(TrieNode *node, int id) {
     PostingList **PostingList = &node->postingList;
+    // If list is empty, create a listNode and set both first and last to point to it
     if ((*PostingList)->first == NULL) {
         (*PostingList)->first = createListNode(id);
         if ((*PostingList)->first == NULL) {
@@ -64,7 +65,9 @@ int incrementPostingList(TrieNode *node, int id) {
         (*PostingList)->df++;
         return 0;
     }
-    if ((*PostingList)->last->id_times[0] == id) {   // word belongs to the same (last) doc
+    /* Words are inserted in order of id, so the posting list we're looking for either
+     * is the last one or it doesn't exist and should be created after the last */
+    if ((*PostingList)->last->id_times[0] == id) {      // word belongs to last doc
         (*PostingList)->last->id_times[1]++;
     } else {
         (*PostingList)->last->next = createListNode(id);
@@ -73,16 +76,17 @@ int incrementPostingList(TrieNode *node, int id) {
             return 4;
         }
         (*PostingList)->last = (*PostingList)->last->next;
-        (*PostingList)->df++;
+        (*PostingList)->df++;       // new postlingList added - increment df by 1
     }
     return 0;
 }
 
-int getTermFrequency(PostingList *postingList, int id) {
+int getTermFrequency(PostingList *postingList, int id) {        // returns 0 if not found
     if (postingList == NULL) {
         return 0;
     }
     ListNode *current = postingList->first;
+    // If we surpass the id, then the postingList we're searching for doesn't exist:
     while (current != NULL && current->id_times[0] <= id) {
         if (current->id_times[0] == id) {
             return current->id_times[1];

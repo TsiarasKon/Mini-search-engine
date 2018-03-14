@@ -1,9 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <math.h>
-#include <string.h>
 #include "util.h"
 
 #define k1 1.2
@@ -21,6 +21,8 @@ double score(int tf, int df, int D) {
     return IDF(df) * ((tf * (k1 + 1)) / (tf + k1 * (1 - b + b * (D / avgdl))));
 }
 
+/* Returns 1 or 0 if a string exists or dosen't exist respectively in a given
+ * list of strings of any length, as long as the string after the last is NULL */
 char word_in(char *word, char **word_list) {
     int i = 0;
     while (word_list[i] != NULL) {
@@ -35,21 +37,23 @@ char word_in(char *word, char **word_list) {
 int print_results(HeapNode **heap, char **docs, char **terms) {
     if (*heap == NULL) {
         printf("No results found.\n");
+        return 0;
     }
-    int margins[4];
-    margins[1] = ((int) log10(K)) + 1;
-    margins[2] = ((int) log10(doc_count)) + 1;
-    margins[3] = 4;         // score decimal precision
-    margins[0] = margins[1] + margins[2] + margins[3] + 9;    // total margin sum including parenthesis, braces, etc
+    int margins[5];
+    margins[1] = ((int) log10(K - 1)) + 1;          // char length of K
+    margins[2] = ((int) log10(doc_count - 1)) + 1;
+    margins[3] = 4;         // (-) + up to 2 integer digits + decimal point
+    margins[4] = 4;         // score decimal precision
+    margins[0] = margins[1] + margins[2] + margins[3] + margins[4] + 6;    // total margin sum including parenthesis, braces, etc
+    struct winsize w;
     for (int k = 0; k < K; k++) {
         if (*heap == NULL) {
             break;
         }
-        struct winsize w;
         ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
         if (w.ws_col <= margins[0] + 1) {       // terminal too narrow - cannot pretty print
             fprintf(stderr, "Terminal too narrow - Results will be printed unaligned.\n");
-            printf("%*d.(%*d)[%*.*f] %s\n", margins[1], k, margins[2], (*heap)->id, margins[3] + 3, margins[3], (*heap)->score, docs[(*heap)->id]);
+            printf("%*d.(%*d)[%*.*f] %s\n", margins[1], k, margins[2], (*heap)->id, margins[3] + margins[4], margins[4], (*heap)->score, docs[(*heap)->id]);
             *heap = deleteMaxNode(heap);
         } else {
             int curr_col;
@@ -62,32 +66,35 @@ int print_results(HeapNode **heap, char **docs, char **terms) {
                 fprintf(stderr, "Failed to allocate memory.\n");
                 return 4;
             }
-            char *curr_doc_ptr = curr_doc;
+            char *curr_doc_ptr = curr_doc;      // used to free curr_doc after using strtok()
             strcpy(curr_doc, docs[(*heap)->id]);
             char *curr_word = strtok(curr_doc, " \t");
             while (curr_word != NULL || result <= 0) {
                 if (result >= 0) {
-                    if (result == 0) {
-                        printf("%*d.(%*d)[%*.*f] ", margins[1], k, margins[2], (*heap)->id, margins[3] + 3, margins[3], (*heap)->score);
+                    if (result == 0) {      // first line to be printed
+                        printf("%*d.(%*d)[%*.*f] ", margins[1], k, margins[2], (*heap)->id, margins[3] + margins[4], margins[4], (*heap)->score);
                     } else {
                         for (int i = 0; i < margins[0]; i++) {
                             printf(" ");
                         }
                     }
-                    result = -1;
+                    result = -1;    // next loop we'll print the underlines
                     for (int i = 0; i < cols_to_write; i++) {
                         underlines[i] = ' ';
                     }
                     curr_col = 0;
                     while (curr_col < cols_to_write - 1 && curr_word != NULL) {
                         curr_word_len = strlen(curr_word);
+                        // Word will never fit in terminal - abort printing:
                         if (curr_word_len > cols_to_write - 1) {
                             fprintf(stderr, "Terminal too narrow - Results printing was aborted.\n");
                             return -2;
                         }
-                        if (curr_word_len > cols_to_write - curr_col - 1) {     // word doesn't fit in terminal - abort printing
+                        // Word doesn't currently fit in terminal - we'll print it in the next line
+                        if (curr_word_len > cols_to_write - curr_col - 1) {
                             break;
                         }
+                        // Word is a search term - set corresponding underlines to '^'
                         if (word_in(curr_word, terms) == 1) {
                             for (int i = curr_col; i < curr_col + curr_word_len; i++) {
                                 underlines[i] = '^';

@@ -2,3 +2,10 @@
 1 Quick brown foxes leaped over lazy dogs for fun
 2 What does the fox say
 3 The ting goes skra
+4 let's
+5 test
+6 exatly
+7 10
+000008 docs
+9 in a single file
+10 or more
