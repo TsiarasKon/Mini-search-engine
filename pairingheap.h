@@ -19,4 +19,6 @@ HeapNode* mergePairs(HeapNode *children);
 HeapNode* heapInsert(HeapNode *heap, double score, int id);
 HeapNode* deleteMaxNode(HeapNode **heap);
 
+int getHeapSize(HeapNode *heap);
+
 #endif

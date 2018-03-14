@@ -83,3 +83,13 @@ HeapNode* deleteMaxNode(HeapNode **heap) {
     free(*heap);
     return mergePairs(children);
 }
+
+int getHeapSize(HeapNode *heap) {
+    if (heap == NULL) {
+        return 0;
+    }
+    int size = 1;
+    size += getHeapSize(heap->sibilings);
+    size += getHeapSize(heap->children);
+    return size;
+}

@@ -40,8 +40,13 @@ int print_results(HeapNode **heap, char **docs, char **terms) {
         return 0;
     }
     int margins[5];
-    margins[1] = ((int) log10(K - 1)) + 1;          // char length of K
-    margins[2] = ((int) log10(doc_count - 1)) + 1;
+    int heapSize = getHeapSize(*heap);
+    if (K < heapSize) {     // the smallest of the two equals the number of search results
+        margins[1] = (K == 1) ? 1 : (((int) log10(K - 1)) + 1);
+    } else {
+        margins[1] = (heapSize == 1) ? 1 : (((int) log10(heapSize - 1)) + 1);
+    }
+    margins[2] = (doc_count == 1) ? 1 : (((int) log10(doc_count - 1)) + 1);
     margins[3] = 4;         // (-) + up to 2 integer digits + decimal point
     margins[4] = 4;         // score decimal precision
     margins[0] = margins[1] + margins[2] + margins[3] + margins[4] + 6;    // total margin sum including parenthesis, braces, etc
