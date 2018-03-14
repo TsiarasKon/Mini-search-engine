@@ -27,9 +27,6 @@ void destroyHeap(HeapNode **heapNode) {
     }
     free(*heapNode);
     *heapNode = NULL;
-//    while (*heapNode != NULL) {
-//        *heapNode = deleteMaxNode(heapNode);
-//    }
 }
 
 void addHeapChild(HeapNode *heap, HeapNode *heapNode) {

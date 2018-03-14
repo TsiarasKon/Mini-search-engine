@@ -1,7 +1,7 @@
 OBJS 	= main.o interface.o pairingheap.o postinglist.o trie.o util.o
 SOURCE	= main.c interface.c pairingheap.c postinglist.c trie.c util.c
 HEADER  = pairingheap.h postinglist.h trie.h util.h
-OUT  	= sysproEx1
+OUT  	= minisearch
 CC		= gcc
 FLAGS   = -g3 -c -pedantic -std=c99 -Wall
 

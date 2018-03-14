@@ -86,12 +86,15 @@ void interface(Trie *trie, char **docs, int *docWc) {
             if (command == NULL) {          // full df
                 printTrie(trie);
             } else {        // single word df
-                PostingList *postingList = getPostingList(trie, command);
-                if (postingList == NULL) {
-                    printf("\"%s\" doesn't exist in any of the docs.\n", command);
-                    continue;
+                while (command != NULL) {
+                    int df = 0;
+                    PostingList *postingList = getPostingList(trie, command);
+                    if (postingList != NULL) {      // word exists in docs
+                        df = postingList->df;
+                    }
+                    printf("%s %d\n", command, df);     // will print 0 df for a non-existing word
+                    command = strtok(NULL, " \t");
                 }
-                printf("%s %d\n", command, postingList->df);
             }
         } else if (!strcmp(command, cmds[2])) {       // tf
             command = strtok(NULL, " \t");
@@ -127,7 +130,7 @@ void interface(Trie *trie, char **docs, int *docWc) {
             printf("Available commands (use without quotes):\n");
             printf(" '/search word1 word2 ... word10' for a list of the top-K most relevant docs with the given words. Only up to 10 words per search query are currently supported. \n");
             printf(" '/df' for an alphabetically ordered list of all words appearing in all docs along with their document frequency.\n");
-            printf(" '/df word' for the document frequency of a single word.\n");
+            printf(" '/df word1 word2 ...' for the document frequency of the given words only.\n");
             printf(" '/tf id word' for the term frequency of a single word in the document with the given id.\n");
             printf(" '/k K' for setting number of search results to K.\n");
             printf(" '/help' for the list you're seeing right now.\n");
