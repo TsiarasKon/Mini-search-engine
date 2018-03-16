@@ -54,6 +54,9 @@ int main(int argc, char *argv[]) {
             break;
         }
         bufferptr = buffer;
+        if (buffer[0] == '\n' || (buffer[0] == '\r' && buffer[1] == '\n'))  {     // ignore empty lines
+            continue;
+        }
         while (*buffer == ' ' || *buffer == '\t') {     // ignore whitespace before id
             buffer++;
         }

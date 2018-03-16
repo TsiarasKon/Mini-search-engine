@@ -58,7 +58,7 @@ int interface(Trie *trie, char **docs, int *docWc) {
              * If the postingListPtr[i] points to a list with id less than the current's doc_id, we point it to its next.
              * If we surpass it, since the listNodes are in order of id, there is no postinglist for this doc in that term.
              * Else, if a match is found, we calculate the score() for this doc and term.
-             * Each doc with a non-zero score is then added to a pairing heap for later printing. */
+             * Each doc that contained a search term is then added to a pairing heap for later printing. */
             HeapNode *heap = NULL;
             ListNode *postingListPtr[term_count];
             PostingList *tempPostingList;
@@ -68,8 +68,10 @@ int interface(Trie *trie, char **docs, int *docWc) {
             }
             double doc_score;
             int tf;
+            char found;
             for (int id = 0; id < doc_count; id++) {
                 doc_score = 0;
+                found = 0;
                 for (int i = 0; i < term_count; i++) {
                     while (postingListPtr[i] != NULL && postingListPtr[i]->id_times[0] < id) {
                         postingListPtr[i] = postingListPtr[i]->next;
@@ -82,11 +84,12 @@ int interface(Trie *trie, char **docs, int *docWc) {
                     tempPostingList = getPostingList(trie, terms[i]);
                     tf = getTermFrequency(tempPostingList, id);
                     if (tf <= 0) {   // getPostingList() returned NULL <=> word doesn't exist in trie
-                        continue;   // score would be 0 anyway
+                        continue;
                     }
+                    found = 1;
                     doc_score += score(tf, tempPostingList->df, docWc[id]);
                 }
-                if (doc_score != 0) {
+                if (found) {
                     heap = heapInsert(heap, doc_score, id);
                 }
             }

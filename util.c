@@ -78,12 +78,12 @@ int print_results(HeapNode **heap, char **docs, char **terms) {
                 if (result >= 0) {
                     if (result == 0) {      // first line to be printed
                         printf("%*d.(%*d)[%*.*f] ", margins[1], k, margins[2], (*heap)->id, margins[3] + margins[4], margins[4], (*heap)->score);
+                        result = 1;
                     } else {
                         for (int i = 0; i < margins[0]; i++) {
                             printf(" ");
                         }
                     }
-                    result = -1;    // next loop we'll print the underlines
                     for (int i = 0; i < cols_to_write; i++) {
                         underlines[i] = ' ';
                     }
@@ -104,6 +104,7 @@ int print_results(HeapNode **heap, char **docs, char **terms) {
                             for (int i = curr_col; i < curr_col + curr_word_len; i++) {
                                 underlines[i] = '^';
                             }
+                            result = -1;    // next loop we'll print the underlines (only if a term was found in this line)
                         }
                         for (int i = 0; i < curr_word_len; i++) {
                             printf("%c", curr_word[i]);
